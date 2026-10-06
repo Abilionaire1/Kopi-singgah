@@ -1,0 +1,709 @@
+/* ============================================
+   DASHBOARD STYLING - MODERN ADMIN PANEL
+   Color Palette: Coral #D97D63, Grays
+   ============================================ */
+
+:root {
+  /* Primary Colors */
+  --coral: #D97D63;
+  --coral-hover: #C26B53;
+  --coral-active: #B05A42;
+  
+  /* Grays */
+  --dark: #1F2937;
+  --dark-text: #374151;
+  --medium-gray: #6B7280;
+  --light-gray: #9CA3AF;
+  --border-gray: #E5E7EB;
+  --bg-light: #F9FAFB;
+  --bg-lighter: #FAFBFC;
+  --white: #FFFFFF;
+  
+  /* Accent */
+  --brown: #8B4513;
+  --red: #EF4444;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+html, body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  background-color: var(--bg-light);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Georgia, 'Crimson Text', serif;
+  color: var(--dark);
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 400;
+}
+
+h2, h4 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* ============================================
+   NAVBAR / HEADER
+   ============================================ */
+
+.navbar {
+  background-color: #2D3748 !important;
+  padding: 0.75rem 1.5rem !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-size: 1rem;
+  font-weight: 600;
+  background: none !important;
+  box-shadow: none !important;
+  color: white !important;
+  padding: 0 !important;
+}
+
+/* ============================================
+   SIDEBAR STYLING
+   ============================================ */
+
+.sidebar {
+  background-color: var(--white);
+  border-right: 1px solid var(--border-gray);
+  padding: 0;
+  position: relative;
+}
+
+/* Sidebar Logo Area */
+.sidebar .offcanvas-header {
+  display: none;
+}
+
+.sidebar .offcanvas-body {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Add logo styling for sidebar */
+.sidebar::before {
+  content: "MyDashboard";
+  display: block;
+  font-family: Georgia, 'Crimson Text', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--brown);
+  padding: 20px 16px;
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--border-gray);
+}
+
+/* Main Navigation Menu */
+.sidebar .nav {
+  padding: 8px 8px;
+  flex: 1;
+}
+
+.sidebar .nav-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #4B5563;
+  padding: 0 16px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  border-left: 4px solid transparent;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  background-color: transparent;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #F3F4F6;
+  color: #4B5563;
+}
+
+.sidebar .nav-link.active {
+  background-color: #FEF2F0;
+  color: var(--coral);
+  border-left-color: var(--coral);
+}
+
+.sidebar .nav-link svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* Sidebar Heading (SAVED REPORTS) */
+.sidebar-heading {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--light-gray);
+  letter-spacing: 0.5px;
+  padding: 12px 16px;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.sidebar-heading + .nav {
+  padding: 0 8px;
+}
+
+/* Sidebar Bottom Section */
+.sidebar .border-top {
+  margin-top: 20px !important;
+  padding-top: 12px !important;
+  border-top: 1px solid var(--border-gray) !important;
+}
+
+/* ============================================
+   THEME TOGGLE BUTTON
+   ============================================ */
+
+.btn-bd-primary {
+  --bs-btn-bg: var(--coral);
+  --bs-btn-border-color: var(--coral);
+  --bs-btn-hover-bg: var(--coral-hover);
+  --bs-btn-hover-border-color: var(--coral-hover);
+  --bs-btn-active-bg: var(--coral-active);
+  --bs-btn-active-border-color: var(--coral-active);
+  --bs-btn-color: white;
+  font-weight: 500;
+  width: 100%;
+}
+
+.btn-bd-primary:hover {
+  background-color: var(--coral-hover) !important;
+  border-color: var(--coral-hover) !important;
+}
+
+/* ============================================
+   MAIN CONTENT AREA
+   ============================================ */
+
+main {
+  background-color: var(--bg-light);
+  padding: 24px;
+}
+
+/* Top Header Bar */
+main > .d-flex:first-of-type {
+  background-color: var(--white);
+  padding: 16px 24px;
+  margin: -24px -24px 24px -24px;
+  border-bottom: 1px solid var(--border-gray);
+  border-radius: 0;
+}
+
+main > .d-flex:first-of-type h1 {
+  font-family: Georgia, 'Crimson Text', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--dark);
+  margin: 0;
+}
+
+/* Top Buttons Group */
+.btn-toolbar .btn-group .btn,
+.btn-toolbar .btn {
+  background-color: var(--white);
+  border: 1px solid var(--border-gray);
+  color: var(--dark-text);
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.btn-toolbar .btn-group .btn:hover,
+.btn-toolbar .btn:hover {
+  background-color: #F3F4F6;
+  border-color: #D1D5DB;
+}
+
+.btn-toolbar .btn-group .btn.active {
+  background-color: var(--coral);
+  border-color: var(--coral);
+  color: white;
+}
+
+/* ============================================
+   FORM SECTION
+   ============================================ */
+
+.card {
+  background-color: var(--white);
+  border: 1px solid var(--border-gray);
+  border-radius: 8px;
+  box-shadow: none;
+  margin-bottom: 32px;
+}
+
+.card-body {
+  padding: 24px;
+}
+
+.card-title {
+  font-family: Georgia, 'Crimson Text', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 20px;
+}
+
+/* Form Grid */
+.row.g-3 {
+  --bs-gutter-x: 20px;
+  --bs-gutter-y: 16px;
+}
+
+/* Form Labels */
+.form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--dark-text);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.fw-medium {
+  font-weight: 500 !important;
+}
+
+/* Form Inputs */
+.form-control,
+.form-select {
+  background-color: var(--bg-light);
+  border: 1px solid var(--border-gray);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: var(--dark-text);
+  transition: all 0.15s ease;
+}
+
+.form-control::placeholder,
+.form-select option {
+  color: var(--medium-gray);
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: var(--white);
+  border-color: var(--coral);
+  color: var(--dark-text);
+  box-shadow: none;
+  outline: none;
+}
+
+.form-control:hover,
+.form-select:hover {
+  border-color: #D1D5DB;
+}
+
+/* Input Groups (Rp Input) */
+.input-group .input-group-text {
+  background-color: var(--bg-light);
+  border: 1px solid var(--border-gray);
+  color: var(--dark-text);
+  font-weight: 500;
+}
+
+.input-group .form-control:focus + .input-group-text {
+  border-color: var(--coral);
+}
+
+/* File Input */
+.form-control[type="file"] {
+  padding: 8px 12px;
+  line-height: 1.5;
+}
+
+.form-text {
+  font-size: 12px;
+  color: var(--medium-gray);
+  margin-top: 8px;
+  display: block;
+}
+
+/* Textarea */
+textarea.form-control {
+  min-height: 120px;
+  resize: vertical;
+  padding: 12px;
+}
+
+textarea.form-control:focus {
+  background-color: var(--white);
+  border-color: var(--coral);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn-primary {
+  background-color: var(--coral);
+  border-color: var(--coral);
+  color: white;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--coral-hover);
+  border-color: var(--coral-hover);
+  box-shadow: 0 4px 12px rgba(217, 125, 99, 0.15);
+}
+
+.btn-primary:active,
+.btn-primary:focus {
+  background-color: var(--coral-active);
+  border-color: var(--coral-active);
+  transform: scale(0.98);
+  box-shadow: none;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: var(--white);
+  border: 1px solid var(--border-gray);
+  color: var(--dark-text);
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #F3F4F6;
+  border-color: #D1D5DB;
+  color: var(--dark-text);
+}
+
+/* File Upload Button */
+.form-control[type="file"] + .btn,
+.flex-grow-1 .btn {
+  background-color: var(--dark);
+  border-color: var(--dark);
+  color: white;
+  padding: 10px 16px;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
+.form-control[type="file"] + .btn:hover {
+  background-color: #1a202c;
+  border-color: #1a202c;
+}
+
+/* ============================================
+   IMAGES & PREVIEWS
+   ============================================ */
+
+img {
+  border-radius: 4px;
+  max-width: 100%;
+  height: auto;
+}
+
+.rounded {
+  border-radius: 4px !important;
+}
+
+.rounded.border {
+  border: 1px solid var(--border-gray) !important;
+}
+
+/* ============================================
+   TABLE STYLING
+   ============================================ */
+
+.d-flex.justify-content-between.align-items-center:not(.btn-toolbar) {
+  margin-bottom: 20px;
+  margin-top: 32px;
+}
+
+.d-flex.justify-content-between.align-items-center h4 {
+  font-family: Georgia, 'Crimson Text', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--dark);
+  margin: 0;
+}
+
+.table-responsive {
+  background-color: var(--white);
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid var(--border-gray);
+  overflow-x: auto;
+}
+
+.table {
+  margin-bottom: 0;
+  font-size: 13px;
+  border-collapse: collapse;
+}
+
+/* Table Header */
+.table thead.table-light {
+  background-color: #F3F4F6;
+  border-bottom: 2px solid var(--border-gray);
+}
+
+.table thead th {
+  color: var(--medium-gray);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 12px;
+  border-bottom: 2px solid var(--border-gray);
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+/* Table Body */
+.table tbody td {
+  padding: 12px;
+  color: var(--dark-text);
+  border-bottom: 1px solid var(--border-gray);
+  height: 52px;
+  vertical-align: middle;
+}
+
+.table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: var(--white);
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: var(--bg-lighter);
+}
+
+.table tbody tr:hover {
+  background-color: var(--bg-light);
+}
+
+.table .fw-medium {
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.table .text-end {
+  text-align: right !important;
+  font-family: 'Courier New', monospace;
+}
+
+.table .text-center {
+  text-align: center !important;
+}
+
+.table .text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Table Images */
+.table img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid var(--border-gray);
+}
+
+/* Table Badges */
+.badge {
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 4px;
+  background-color: var(--medium-gray);
+}
+
+.badge.bg-secondary {
+  background-color: var(--medium-gray) !important;
+  color: white;
+}
+
+/* Table Action Buttons */
+.table .btn-sm {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.table .btn-warning {
+  background-color: #FBBF24;
+  border-color: #FBBF24;
+  color: #1F2937;
+}
+
+.table .btn-warning:hover {
+  background-color: #F59E0B;
+  border-color: #F59E0B;
+  color: white;
+}
+
+.table .btn-danger {
+  background-color: var(--red);
+  border-color: var(--red);
+  color: white;
+}
+
+.table .btn-danger:hover {
+  background-color: #DC2626;
+  border-color: #DC2626;
+}
+
+.table .d-flex.gap-2 {
+  gap: 8px;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: absolute;
+  }
+  
+  main {
+    padding: 16px;
+  }
+  
+  main > .d-flex:first-of-type {
+    margin: -16px -16px 16px -16px;
+    padding: 12px 16px;
+  }
+  
+  .card {
+    padding: 16px;
+  }
+  
+  .card-body {
+    padding: 16px;
+  }
+  
+  .row.g-3 {
+    --bs-gutter-x: 12px;
+    --bs-gutter-y: 12px;
+  }
+  
+  .col-md-8,
+  .col-md-6,
+  .col-md-4 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .table-responsive {
+    padding: 16px;
+    font-size: 12px;
+  }
+  
+  .table img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .table .btn-sm {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+  
+  .d-flex.justify-content-end {
+    flex-direction: column;
+  }
+  
+  .d-flex.justify-content-end .btn {
+    width: 100%;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.shadow-sm {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.text-muted {
+  color: var(--light-gray) !important;
+}
+
+.text-secondary {
+  color: var(--medium-gray) !important;
+}
+
+.border {
+  border: 1px solid var(--border-gray) !important;
+}
+
+.bg-body-tertiary {
+  background-color: var(--bg-light) !important;
+}
+
+/* ============================================
+   TRANSITIONS & ANIMATIONS
+   ============================================ */
+
+* {
+  transition: background-color 0.15s ease, 
+              border-color 0.15s ease, 
+              color 0.15s ease;
+}
+
+button, a, input, select, textarea {
+  transition: all 0.2s ease;
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-gray);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--medium-gray);
+}
