@@ -45,4 +45,4 @@ Skema juga menyertakan trigger untuk pencatatan log, perhitungan pembayaran, bon
 - File skema hanya berisi definisi database, bukan data akun, pelanggan, pembayaran, atau transaksi.
 - Jangan commit dump database berisi data asli, kredensial, atau bukti pembayaran.
 - Direktori `uploads` dapat berisi bukti pembayaran. Jangan publikasikan isinya; simpan di luar repository atau pastikan direktori tersebut diabaikan oleh Git.
-- Gunakan password yang di-hash dan kredensial database yang sesuai untuk deployment.
+- Untuk kebutuhan demonstrasi ini, password disimpan sebagai teks biasa. Ini tidak aman untuk penggunaan nyata; jangan gunakan password asli atau deploy aplikasi dengan pendekatan ini.

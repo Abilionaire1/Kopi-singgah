@@ -33,10 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
             if ($exists) {
                 $error = 'Username atau email sudah digunakan.';
             } else {
-                $password_hash = password_hash($password, PASSWORD_DEFAULT);
                 $stmt_register = mysqli_prepare($koneksi, 'INSERT INTO tb_user (name, username, password, email, role) VALUES (?, ?, ?, ?, ?)');
                 $role = 'pelanggan';
-                mysqli_stmt_bind_param($stmt_register, 'sssss', $name, $username, $password_hash, $email, $role);
+                mysqli_stmt_bind_param($stmt_register, 'sssss', $name, $username, $password, $email, $role);
                 mysqli_stmt_execute($stmt_register);
                 mysqli_stmt_close($stmt_register);
                 $_SESSION['success'] = 'Pendaftaran berhasil. Silakan login.';

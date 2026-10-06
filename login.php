@@ -20,16 +20,20 @@ $redirect_url = "";
 
 // PROSES LOGIN
 if (isset($_POST['login'])) {
-    $username = mysqli_real_escape_string($koneksi, $_POST['username']);
-    $password = mysqli_real_escape_string($koneksi, $_POST['password']);
+    $username = trim($_POST['username'] ?? '');
+    $password = $_POST['password'] ?? '';
 
     // Cek akun berdasarkan username atau email
-    $query = mysqli_query($koneksi, "SELECT * FROM tb_user WHERE username = '$username' OR email = '$username'");
+    $stmt_login = mysqli_prepare($koneksi, 'SELECT * FROM tb_user WHERE username = ? OR email = ? LIMIT 1');
+    mysqli_stmt_bind_param($stmt_login, 'ss', $username, $username);
+    mysqli_stmt_execute($stmt_login);
+    $query = mysqli_stmt_get_result($stmt_login);
 
-    if (mysqli_num_rows($query) > 0) {
-        $user = mysqli_fetch_assoc($query);
+    $user = mysqli_fetch_assoc($query);
+    mysqli_stmt_close($stmt_login);
+    if ($user) {
 
-        // Verifikasi Password (jika menggunakan plain text / sesuaikan jika menggunakan password_verify)
+        // Verifikasi password teks biasa.
         if ($password === $user['password']) {
             $role = strtolower($user['role']);
 
@@ -97,6 +101,7 @@ if (isset($_POST['login'])) {
                         'soft': '0 10px 40px rgba(0, 0, 0, 0.05)',
                     }
                 }
+                mysqli_stmt_close($stmt_login);
             }
         }
     </script>
