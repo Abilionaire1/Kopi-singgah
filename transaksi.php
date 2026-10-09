@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['keranjang'] = $_SESSION['keranjang'] ?? [];
 include 'koneksi.php';
 /** @var mysqli $koneksi */
 
@@ -11,15 +12,7 @@ if (!$id_user) {
             window.location.href = 'login.php';
           </script>";
     exit;
-}
 
-// 2. Cek Keranjang
-if (empty($_SESSION['keranjang'])) {
-    echo "<script>
-            alert('Keranjang belanja Anda masih kosong!');
-            window.location.href = 'menu.php';
-          </script>";
-    exit;
 }
 
 // 3. Ambil Data User
@@ -126,7 +119,7 @@ if (isset($_POST['proses_checkout'])) {
                     }
 
                     if ($status !== "error" && mysqli_commit($koneksi)) {
-                        unset($_SESSION['keranjang']);
+                        $_SESSION['keranjang'] = [];
                         $pesan = "Pesanan berhasil dibuat!";
                         $status = "success";
                     } elseif ($status !== "error") {

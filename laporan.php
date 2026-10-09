@@ -52,23 +52,5 @@
         }
         ?>
     </table>
-
-    <h2>3. Log Aktivitas (Tabel: log_pembelian) — *Otomatis diisi Trigger*</h2>
-    <table>
-        <tr>
-            <th>Jenis Operasi</th>
-            <th>Waktu Eksekusi</th>
-        </tr>
-        <?php
-        $log = mysqli_query($koneksi, "SELECT * FROM log_pembelian");
-        while ($r = mysqli_fetch_assoc($log)) {
-            echo "<tr>
-                    <td>{$r['operasi']}</td>
-                    <td>{$r['waktu']}</td>
-                  </tr>";
-        }
-        ?>
-    </table>
-
 </body>
 </html>

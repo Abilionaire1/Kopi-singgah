@@ -11,11 +11,6 @@ CREATE TABLE `barang` (
   PRIMARY KEY (`id_brg`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `log_pembelian` (
-  `operasi` varchar(25) NOT NULL,
-  `waktu` date DEFAULT NULL,
-  PRIMARY KEY (`operasi`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `pembayaran` (
   `id_pem` int NOT NULL,
@@ -96,14 +91,6 @@ CREATE TABLE `tb_detail` (
 
 DELIMITER $$
 
-CREATE TRIGGER `trg_pembelian_delete_log`
-AFTER DELETE ON `pembelian` FOR EACH ROW
-BEGIN
-  INSERT INTO `log_pembelian` (`operasi`, `waktu`)
-  VALUES ('Delete', CURDATE())
-  ON DUPLICATE KEY UPDATE `waktu` = CURDATE();
-END$$
-
 CREATE TRIGGER `trg_pembelian_insert`
 BEFORE INSERT ON `pembelian` FOR EACH ROW
 BEGIN
@@ -134,30 +121,6 @@ BEGIN
   WHERE `id_brg` = NEW.`id_brg`;
 END$$
 
-CREATE TRIGGER `trg_pembelian_insert_log`
-AFTER INSERT ON `pembelian` FOR EACH ROW
-BEGIN
-  INSERT INTO `log_pembelian` (`operasi`, `waktu`)
-  VALUES ('Insert', CURDATE())
-  ON DUPLICATE KEY UPDATE `waktu` = CURDATE();
-END$$
-
-CREATE TRIGGER `trg_pembelian_update_log`
-AFTER UPDATE ON `pembelian` FOR EACH ROW
-BEGIN
-  INSERT INTO `log_pembelian` (`operasi`, `waktu`)
-  VALUES ('Update', CURDATE())
-  ON DUPLICATE KEY UPDATE `waktu` = CURDATE();
-END$$
-
-CREATE TRIGGER `trg_tb_detail_delete_log`
-AFTER DELETE ON `tb_detail` FOR EACH ROW
-BEGIN
-  INSERT INTO `log_pembelian` (`operasi`, `waktu`)
-  VALUES ('Delete', CURDATE())
-  ON DUPLICATE KEY UPDATE `waktu` = CURDATE();
-END$$
-
 CREATE TRIGGER `trg_tb_detail_insert`
 BEFORE INSERT ON `tb_detail` FOR EACH ROW
 BEGIN
@@ -177,20 +140,6 @@ BEGIN
   WHERE `id` = NEW.`id_produk`;
 END$$
 
-CREATE TRIGGER `trg_tb_detail_insert_log`
-AFTER INSERT ON `tb_detail` FOR EACH ROW
-BEGIN
-  INSERT INTO `log_pembelian` (`operasi`, `waktu`)
-  VALUES ('Insert', CURDATE())
-  ON DUPLICATE KEY UPDATE `waktu` = CURDATE();
-END$$
-
-CREATE TRIGGER `trg_tb_detail_update_log`
-AFTER UPDATE ON `tb_detail` FOR EACH ROW
-BEGIN
-  INSERT INTO `log_pembelian` (`operasi`, `waktu`)
-  VALUES ('Update', CURDATE())
-  ON DUPLICATE KEY UPDATE `waktu` = CURDATE();
-END$$
-
 DELIMITER ;
+
+

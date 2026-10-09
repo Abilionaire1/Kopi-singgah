@@ -101,7 +101,6 @@ if (isset($_POST['login'])) {
                         'soft': '0 10px 40px rgba(0, 0, 0, 0.05)',
                     }
                 }
-                mysqli_stmt_close($stmt_login);
             }
         }
     </script>

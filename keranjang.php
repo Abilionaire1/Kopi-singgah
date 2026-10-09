@@ -2,6 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+$_SESSION['keranjang'] = $_SESSION['keranjang'] ?? [];
 include 'koneksi.php';
 /** @var mysqli $koneksi */
 

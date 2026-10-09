@@ -5,7 +5,7 @@ include 'koneksi.php';
 
 // Ambil 4 produk terbaru untuk Best Seller (hero section)
 $hero_products = [];
-$query_hero = mysqli_query($koneksi, "SELECT tb_produk.*, tb_kategori.nama_kategori FROM tb_produk JOIN tb_kategori ON tb_produk.id_kategori = tb_kategori.id_kategori ORDER BY id DESC LIMIT 4");
+$query_hero = mysqli_query($koneksi, "SELECT tb_produk.*, tb_kategori.nama_kategori FROM tb_produk JOIN tb_kategori ON tb_produk.id_kategori = tb_kategori.id_kategori ORDER BY id ASC LIMIT 4");
 if ($query_hero && mysqli_num_rows($query_hero) > 0) {
     while ($row = mysqli_fetch_array($query_hero)) {
         $hero_products[] = $row;
@@ -417,7 +417,7 @@ if (isset($_POST['submit_beli'])) {
 
             <?php
             // Query ambil 6 produk terbaru
-            $query = mysqli_query($koneksi, "SELECT tb_produk.*, tb_kategori.nama_kategori FROM tb_produk JOIN tb_kategori ON tb_produk.id_kategori = tb_kategori.id_kategori ORDER BY id DESC LIMIT 6");
+            $query = mysqli_query($koneksi, "SELECT tb_produk.*, tb_kategori.nama_kategori FROM tb_produk JOIN tb_kategori ON tb_produk.id_kategori = tb_kategori.id_kategori ORDER BY id ASC LIMIT 6");
             
             $semua_produk = [];
             if ($query && mysqli_num_rows($query) > 0) {
