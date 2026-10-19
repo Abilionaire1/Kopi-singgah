@@ -3,17 +3,6 @@ session_start();
 include 'koneksi.php';
 /** @var mysqli $koneksi */
 
-// Jika user sudah dalam keadaan login, cegah masuk ke halaman login lagi
-if (isset($_SESSION['user_id']) || isset($_SESSION['id_user'])) {
-    $role = strtolower($_SESSION['role'] ?? '');
-    if ($role === 'admin') {
-        header("Location: dashboard/dasbor.php");
-    } else {
-        header("Location: index.php");
-    }
-    exit;
-}
-
 $pesan = "";
 $status = "";
 $redirect_url = "";
@@ -120,7 +109,9 @@ if (isset($_POST['login'])) {
                 </svg>
                 Kopi Singgah.
             </a>
-            
+            <a href="javascript:history.back()" class="text-stone-ink text-sm font-medium hover:text-clay transition flex items-center gap-1">
+                &larr; Kembali
+            </a>
         </div>
     </nav>
 

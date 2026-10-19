@@ -45,7 +45,10 @@ if (isset($_POST['submit_beli'])) {
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+        document.documentElement.classList.remove('dark');
+        try { localStorage.removeItem('theme'); } catch(e) {}
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -69,20 +72,40 @@ if (isset($_POST['submit_beli'])) {
         }
     </script>
     <style>
+        /* Mobile-First CSS Reset & Responsiveness */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        img, svg {
+            max-width: 100%;
+            height: auto;
+        }
+
         .page-wrapper {
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Bikin minimal setinggi layar monitor */
+            min-height: auto;
+            width: 100%;
+            max-width: 100%;
         }
         .main-content {
-            flex: 1; /* Ini kunci biar konten utama ngedorong footer ke paling bawah */
-            
-            /* Background pattern sementara buat ngetes */
+            flex: 1;
             background-color: #f8f5f0; 
             background-image: radial-gradient(#e5d9c5 1px, transparent 1px);
             background-size: 20px 20px;
-            padding: 40px;
+            padding: 1.25rem;
             text-align: center;
+            width: 100%;
+            max-width: 100%;
         }
 
         /* --- STYLING FOOTER --- */
@@ -90,19 +113,22 @@ if (isset($_POST['submit_beli'])) {
             background-color: #1a1814;
             color: #8b857d;
             padding: 60px 0 20px;
+            width: 100%;
         }
         .footer-container {
             display: flex;
             justify-content: space-between;
             max-width: 1100px;
+            width: 100%;
             margin: 0 auto;
             padding: 0 20px;
             gap: 40px;
-            flex-wrap: wrap; /* Biar responsif kalau dilayar kecil */
+            flex-wrap: wrap;
         }
         .footer-col {
             flex: 1;
-            min-width: 200px;
+            min-width: 180px;
+            max-width: 100%;
         }
         
         /* Typography Footer */
@@ -194,6 +220,7 @@ if (isset($_POST['submit_beli'])) {
             justify-content: space-between;
             align-items: center;
             max-width: 1100px;
+            width: 100%;
             margin: 50px auto 0;
             padding: 20px 20px 0;
             border-top: 1px solid #2a2722;
@@ -218,6 +245,7 @@ if (isset($_POST['submit_beli'])) {
         }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
         /* Animasi Marquee */
         .animate-marquee {
             display: flex;
@@ -228,6 +256,331 @@ if (isset($_POST['submit_beli'])) {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
+
+        /* ====================================================
+           MOBILE BASE (< 768px, misal 390px)
+           ==================================================== */
+        .nav-mobile-btn {
+            display: flex !important;
+        }
+        .nav-desktop-links,
+        .nav-desktop-auth {
+            display: none !important;
+        }
+
+        .hero-section-custom {
+            position: relative;
+            width: 100%;
+            min-height: auto;
+            padding-top: 1.5rem;
+            padding-bottom: 3.5rem;
+            background-image: none;
+            overflow: hidden;
+        }
+
+        .hero-container-custom {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 100%;
+            padding: 0 1rem;
+            margin: 0 auto;
+        }
+
+        .hero-text-block {
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-eyebrow-text {
+            color: #A0634A;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .hero-headline-text {
+            font-family: 'Fraunces', serif;
+            font-size: 40px;
+            line-height: 1.15;
+            color: #1E1B18;
+            margin: 0 0 1rem 0;
+        }
+
+        .hero-desc-text {
+            font-family: 'Inter', sans-serif;
+            color: rgba(30, 27, 24, 0.75);
+            font-size: 15px;
+            line-height: 1.6;
+            margin: 0 0 1rem 0;
+            max-width: 100%;
+        }
+
+        .hero-img-block {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            margin: 0.5rem 0 1rem 0;
+        }
+
+        .hero-img-element {
+            height: 230px !important;
+            max-height: 240px;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        .hero-carousel-block {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 0.75rem;
+            padding: 0.5rem 0.25rem;
+            justify-content: flex-start;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .hero-thumb-item-custom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.35rem;
+            flex-shrink: 0;
+            scroll-snap-align: start;
+            cursor: pointer;
+        }
+
+        .hero-thumb-circle-custom {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: #F9F6F0;
+            transition: all 0.3s ease;
+        }
+
+        .hero-thumb-label-custom {
+            display: block;
+            font-size: 12px;
+            color: rgba(30, 27, 24, 0.8);
+            text-align: center;
+            max-width: 105px;
+            line-height: 1.25;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-desktop-only-content {
+            display: none !important;
+        }
+
+        .hero-mobile-only-content {
+            display: flex !important;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+
+        .hero-cta-mobile-col {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .btn-pesan-sekarang {
+            width: 100%;
+            min-height: 48px;
+            padding: 0.875rem 1.5rem;
+            border-radius: 9999px;
+            background-color: #1E1B18;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-pesan-sekarang:hover {
+            background-color: #A0634A;
+        }
+
+        .btn-lihat-menu {
+            width: 100%;
+            min-height: 48px;
+            padding: 0.875rem 1.5rem;
+            border-radius: 9999px;
+            border: 1.5px solid #A0634A;
+            background-color: transparent;
+            color: #A0634A;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-lihat-menu:hover {
+            background-color: #A0634A;
+            color: #ffffff;
+        }
+
+        .hero-chips-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            font-size: 13px;
+            font-weight: 500;
+            color: #6B5E55;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-chip-item {
+            background-color: rgba(216, 202, 179, 0.35);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .hero-features-mobile-grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(216, 202, 179, 0.4);
+        }
+
+        .feature-cell {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0.25rem;
+        }
+
+        .feature-cell svg {
+            width: 24px;
+            height: 24px;
+            color: #A0634A;
+            margin-bottom: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .feature-cell span {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1E1B18;
+            line-height: 1.25;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* ====================================================
+           DESKTOP (@media (min-width: 768px))
+           ==================================================== */
+        @media (min-width: 768px) {
+            .nav-mobile-btn {
+                display: none !important;
+            }
+            .nav-desktop-links,
+            .nav-desktop-auth {
+                display: flex !important;
+            }
+
+            .hero-section-custom {
+                padding-top: 4rem;
+                padding-bottom: 5rem;
+                background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+            }
+
+            .hero-container-custom {
+                flex-direction: row;
+                align-items: center;
+                max-width: 1400px;
+                padding: 0 3rem;
+            }
+
+            .hero-text-block {
+                width: 41.666667%;
+                padding-right: 2.5rem;
+                margin-bottom: 0;
+            }
+
+            .hero-headline-text {
+                font-size: 4rem;
+                line-height: 1.1;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-desc-text {
+                font-size: 16px;
+                margin-bottom: 2rem;
+            }
+
+            .hero-img-block {
+                width: 33.333333%;
+                margin: 0;
+            }
+
+            .hero-img-element {
+                height: 500px !important;
+                max-height: 500px;
+            }
+
+            .hero-carousel-block {
+                width: 33.333333%;
+                flex-direction: column;
+                align-items: flex-end;
+                justify-content: flex-end;
+                gap: 1.25rem;
+                overflow-x: visible;
+                padding: 0 1.5rem 0 0;
+                margin-top: 0;
+            }
+
+            .hero-thumb-item-custom {
+                align-items: flex-end;
+            }
+
+            .hero-thumb-circle-custom {
+                width: 96px;
+                height: 96px;
+            }
+
+            .hero-thumb-label-custom {
+                display: none !important;
+            }
+
+            .hero-desktop-only-content {
+                display: block !important;
+            }
+
+            .hero-mobile-only-content {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 
@@ -235,106 +588,265 @@ if (isset($_POST['submit_beli'])) {
 
     <!-- NAVBAR -->
     <nav class="w-full bg-cream/90 backdrop-blur-md sticky top-0 z-50 border-b border-sand/30">
-        <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
+        <div class="nav-container max-w-[1400px] mx-auto flex items-center justify-between">
+            
+            <!-- Left: Mobile Burger Button -->
+            <button id="mobileBurgerBtn" 
+                    type="button" 
+                    aria-expanded="false" 
+                    aria-controls="mobileDrawer" 
+                    aria-label="Buka menu navigasi"
+                    class="nav-mobile-btn md:hidden w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center text-stone-ink hover:text-[#A0634A] rounded-lg transition -ml-2 focus:outline-none focus:ring-2 focus:ring-[#A0634A]/30">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                </svg>
+            </button>
+
+            <!-- Logo -->
             <a href="index.php" class="font-serif text-xl md:text-2xl font-semibold flex items-center gap-2">
-                <svg class="w-6 h-6 text-clay" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <svg class="w-6 h-6 text-[#A0634A]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                 </svg>
                 Kopi Singgah.
             </a>
 
-            <!-- Center Links -->
-            <div class="hidden lg:flex items-center gap-10 text-sm font-medium">
-                <a href="#" class="border-b border-stone-ink pb-1">Beranda</a>
-                <a href="menu.php" class="text-stone-ink/60 hover:text-stone-ink transition">Menu</a>
-                <a href="#about" class="text-stone-ink/60 hover:text-stone-ink transition">Tentang Kami</a>
-                <a href="#produk" class="text-stone-ink/60 hover:text-stone-ink transition">Produk</a>
-                <a href="keranjang.php" class="text-stone-ink/60 hover:text-stone-ink transition">Keranjang</a>
+            <!-- Desktop Center Links (Hidden on mobile < 768px) -->
+            <div class="nav-desktop-links hidden md:flex items-center gap-8 lg:gap-10 text-sm font-medium">
+                <a href="#" class="border-b border-stone-ink pb-1 whitespace-nowrap">Beranda</a>
+                <a href="menu.php" class="text-stone-ink/60 hover:text-stone-ink transition whitespace-nowrap">Menu</a>
+                <a href="#about" class="text-stone-ink/60 hover:text-stone-ink transition whitespace-nowrap">Tentang Kami</a>
+                <a href="#produk" class="text-stone-ink/60 hover:text-stone-ink transition whitespace-nowrap">Produk</a>
             </div>
 
             <!-- Right Icons -->
-            <div class="flex items-center gap-5">
-                <button class="text-stone-ink hover:text-clay transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
-                <a href="keranjang.php" class="text-stone-ink hover:text-clay transition relative">
+            <div class="flex items-center gap-1 sm:gap-2 md:gap-5">
+                <button type="button" aria-label="Cari" class="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center text-stone-ink hover:text-[#A0634A] transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+                <a href="keranjang.php" aria-label="Keranjang" class="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center text-stone-ink hover:text-[#A0634A] transition relative">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                     <!-- Count Badge Example -->
-                    <span class="absolute -top-1.5 -right-2 bg-clay text-white text-[10px] font-bold px-1.5 rounded-full <?= (isset($_SESSION['keranjang']) && array_sum(array_column($_SESSION['keranjang'], 'jumlah'))) > 0 ? '' : 'hidden' ?>">
+                    <span class="absolute top-1.5 right-1.5 bg-[#A0634A] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full leading-none <?= (isset($_SESSION['keranjang']) && array_sum(array_column($_SESSION['keranjang'], 'jumlah'))) > 0 ? '' : 'hidden' ?>">
                         <?= isset($_SESSION['keranjang']) ? array_sum(array_column($_SESSION['keranjang'], 'jumlah')) : 0 ?>
                     </span>
                 </a>
-                <?php if(isset($_SESSION['user_id'])): ?>
-                    <a href="profile.php" class="hidden md:inline-block text-stone-ink/60 hover:text-stone-ink text-sm font-medium transition">Profil</a>
-                    <a href="logout.php" class="hidden md:inline-block border border-stone-ink text-stone-ink text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-stone-ink hover:text-white transition">Keluar</a>
-                <?php else: ?>
-                    <a href="login.php" class="hidden md:inline-block bg-stone-ink text-white text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-clay transition">Masuk / Daftar</a>
-                <?php endif; ?>
+                
+                <!-- Desktop Auth Buttons (Hidden on mobile < 768px) -->
+                <div class="nav-desktop-auth hidden md:flex items-center gap-5">
+                    <?php if(!empty($_SESSION['user_id']) || !empty($_SESSION['id_user'])): ?>
+                        <a href="profile.php" class="text-stone-ink/60 hover:text-stone-ink text-sm font-medium transition">Profil</a>
+                        <a href="logout.php" class="border border-stone-ink text-stone-ink text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-stone-ink hover:text-white transition">Keluar</a>
+                    <?php else: ?>
+                        <a href="login.php" class="border border-stone-ink text-stone-ink text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-stone-ink hover:text-white transition">Masuk / Daftar</a>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </nav>
-<main>
-    <!-- HERO SECTION -->
-    <section class="relative w-full pt-16 pb-20 overflow-hidden bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
-        <!-- Background element -->
-        <div class="absolute inset-0 pointer-events-none opacity-5">
-            <h1 class="text-[12vw] font-black leading-none text-center pt-10">KOPI SINGGAH</h1>
+
+    <!-- Mobile Drawer Backdrop & Panel -->
+    <div id="mobileDrawerBackdrop" class="fixed inset-0 bg-stone-ink/50 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
+
+    <aside id="mobileDrawer" 
+           aria-hidden="true" 
+           class="fixed top-0 left-0 bottom-0 w-[290px] max-w-[85vw] bg-cream z-50 shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between p-6 md:hidden font-sans">
+        <div>
+            <!-- Header Drawer: Logo & Tombol X -->
+            <div class="flex items-center justify-between pb-4 border-b border-sand/40">
+                <span class="font-serif text-lg font-bold text-stone-ink flex items-center gap-2">
+                    <svg class="w-5 h-5 text-[#A0634A]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                    </svg>
+                    Kopi Singgah.
+                </span>
+                <button id="closeDrawerBtn" 
+                        type="button" 
+                        aria-label="Tutup menu navigasi" 
+                        class="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center text-stone-ink hover:text-[#A0634A] rounded-lg transition -mr-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Item Navigasi -->
+            <nav class="flex flex-col gap-2 mt-6">
+                <a href="#" class="drawer-link flex items-center justify-between py-3 px-4 rounded-2xl font-medium text-stone-ink bg-sand/30">
+                    <span>Beranda</span>
+                    <span class="text-xs text-[#A0634A]">&bull;</span>
+                </a>
+                <a href="menu.php" class="drawer-link flex items-center justify-between py-3 px-4 rounded-2xl font-medium text-stone-ink/70 hover:bg-sand/20 hover:text-stone-ink transition">
+                    <span>Menu</span>
+                </a>
+                <a href="#about" class="drawer-link flex items-center justify-between py-3 px-4 rounded-2xl font-medium text-stone-ink/70 hover:bg-sand/20 hover:text-stone-ink transition">
+                    <span>Tentang Kami</span>
+                </a>
+                <a href="#produk" class="drawer-link flex items-center justify-between py-3 px-4 rounded-2xl font-medium text-stone-ink/70 hover:bg-sand/20 hover:text-stone-ink transition">
+                    <span>Produk</span>
+                </a>
+            </nav>
         </div>
 
-        <div class="max-w-[1400px] mx-auto px-6 lg:px-12 flex flex-col lg:flex-row items-center relative z-10">
-            <!-- Kiri -->
-            <div class="w-full lg:w-5/12 pr-0 lg:pr-10 mb-10 lg:mb-0">
-                <span class="text-clay text-xs font-bold tracking-widest uppercase mb-4 block">Kopi Singgah</span>
-                <h1 class="font-serif text-5xl lg:text-[4rem] leading-[1.1] text-stone-ink mb-6">
+        <!-- Bawah Drawer: Tombol Masuk / Daftar Outline Cokelat -->
+        <div class="pt-6 border-t border-sand/40 flex flex-col gap-3">
+            <?php if(!empty($_SESSION['user_id']) || !empty($_SESSION['id_user'])): ?>
+                <a href="profile.php" class="w-full py-3.5 px-4 text-center rounded-full font-semibold text-sm border border-[#A0634A] text-[#A0634A] hover:bg-[#A0634A] hover:text-white transition">Profil Saya</a>
+                <a href="logout.php" class="w-full py-2.5 text-center text-xs text-stone-ink/60 hover:text-stone-ink transition">Keluar</a>
+            <?php else: ?>
+                <a href="login.php" class="w-full py-3.5 px-4 text-center rounded-full font-semibold text-sm border border-[#A0634A] text-[#A0634A] hover:bg-[#A0634A] hover:text-white transition">Masuk / Daftar</a>
+            <?php endif; ?>
+        </div>
+    </aside>
+
+<main>
+    <!-- HERO SECTION -->
+    <section class="hero-section-custom relative w-full overflow-hidden">
+        <div class="hero-container-custom relative z-10">
+            
+            <!-- Kiri (Text di Mobile & Desktop) -->
+            <div class="hero-text-block">
+                <span class="hero-eyebrow-text">KOPI KEKINIAN</span>
+                <h1 class="hero-headline-text">
                     Setiap Singgah<br>Terdapat Rasa
                 </h1>
-                <p class="text-stone-ink/70 text-sm md:text-base leading-relaxed mb-8 max-w-md">
+                <p class="hero-desc-text">
                     Jelajahi koleksi kopi kami dan temukan rasa favorit Anda. Diseduh secara ahli menggunakan biji kopi pilihan terbaik khusus untuk Anda.
                 </p>
-                <a href="#produk" class="inline-flex items-center gap-3 bg-stone-ink text-white text-sm px-8 py-3.5 rounded-full font-semibold hover:bg-clay transition">
-                    Pesan Sekarang &rarr;
-                </a>
 
-                <!-- Features -->
-                <div class="flex flex-wrap gap-6 mt-12 pt-8 border-t border-sand/40">
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full border border-stone-ink/20 flex items-center justify-center">🌱</div>
-                        <span class="text-xs font-semibold">Biji Kopi<br>Pilihan</span>
+                <!-- Desktop CTA, Info & Features (Hidden on mobile < 768px, visible on desktop >= 768px) -->
+                <div class="hero-desktop-only-content">
+                    <div class="flex flex-wrap items-center gap-3">
+                        <a href="#produk" class="inline-flex items-center gap-3 bg-stone-ink text-white text-sm px-8 py-3.5 rounded-full font-semibold hover:bg-clay transition shadow-sm">
+                            Pesan Sekarang &rarr;
+                        </a>
+                        <a href="menu.php" class="inline-flex items-center gap-3 border border-stone-ink text-stone-ink text-sm px-8 py-3.5 rounded-full font-semibold hover:bg-stone-ink hover:text-white transition">
+                            Lihat Menu
+                        </a>
                     </div>
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full border border-stone-ink/20 flex items-center justify-center">📜</div>
-                        <span class="text-xs font-semibold">Resep Autentik<br>Setiap Seduhan</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full border border-stone-ink/20 flex items-center justify-center">🛵</div>
-                        <span class="text-xs font-semibold">Pengiriman<br>Cepat & Aman</span>
+                    <p class="text-xs text-[#8B827A] mt-4 flex items-center gap-1.5">
+                        <span>Mulai Rp 18.000</span>
+                        <span>·</span>
+                        <span class="text-clay">★ 4,9</span>
+                        <span>·</span>
+                        <span>Tiba dalam 25 menit</span>
+                    </p>
+
+                    <!-- Features Desktop -->
+                    <div class="flex flex-wrap gap-6 mt-12 pt-8 border-t border-sand/40">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-6 h-6 text-[#A0634A] shrink-0" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                                <ellipse cx="12" cy="12" rx="8" ry="9" transform="rotate(-30 12 12)"/>
+                                <path stroke-linecap="round" d="M8.5 5.5C11 9 10 14 15.5 18.5"/>
+                            </svg>
+                            <span class="text-[14px] font-semibold text-stone-ink leading-snug">Biji Kopi<br>Pilihan</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-6 h-6 text-[#A0634A] shrink-0" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/>
+                            </svg>
+                            <span class="text-[14px] font-semibold text-stone-ink leading-snug">Resep Autentik<br>Setiap Seduhan</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-6 h-6 text-[#A0634A] shrink-0" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                                <circle cx="5.5" cy="17.5" r="3.5"/>
+                                <circle cx="18.5" cy="17.5" r="3.5"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 6h-2.5l-3 7h6l2-4H15V6zM5.5 17.5l4-7h5.5M18.5 17.5l-2-4.5"/>
+                            </svg>
+                            <span class="text-[14px] font-semibold text-stone-ink leading-snug">Pengiriman<br>Cepat & Aman</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Tengah -->
-            <div class="w-full lg:w-1/3 flex justify-center relative order-1 lg:order-2">
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] lg:w-[420px] lg:h-[420px] bg-sand/30 rounded-full -z-10 blur-sm"></div>
-
-                <img id="mainHeroImage" src="dashboard/img/display/salted-caramel-hero.png"
-                    alt="Produk Utama"
-                    class="h-[340px] lg:h-[500px] object-contain hero-center-img transition-opacity duration-300"> 
+            <!-- Tengah: Foto Gelas Es Kopi (Tampil di Layar Pertama Tanpa Terpotong) -->
+            <div class="hero-img-block">
+                <img id="mainHeroImage" 
+                     src="dashboard/img/display/salted-caramel-hero.png"
+                     alt="Produk Utama"
+                     class="hero-img-element hero-center-img transition-opacity duration-300"> 
             </div>
 
-            <!-- Kanan -->
-            <div class="w-full lg:w-1/3 flex lg:flex-col justify-center lg:justify-end items-center lg:items-end gap-5 order-3 overflow-x-auto no-scrollbar p-4 lg:pr-6">
-                <div class="hero-thumbnail cursor-pointer w-16 h-16 lg:w-24 lg:h-24 rounded-full border-2 border-clay scale-110 shadow-editorial bg-cream overflow-hidden transition-all duration-300 hover:border-clay hover:opacity-100 flex-shrink-0"
-                    data-img="dashboard/img/display/salted-caramel-hero.png">
-                    <img src="dashboard/img/display/salted-caramel-hero.png" class="w-full h-full object-cover" alt="Salted Caramel">
+            <!-- Kanan: Carousel Varian Thumbnail Horizontal di Mobile, Vertikal di Desktop -->
+            <div class="hero-carousel-block no-scrollbar">
+                <div class="hero-thumb-item-custom hero-thumb-item" data-img="dashboard/img/display/salted-caramel-hero.png">
+                    <div class="hero-thumbnail hero-thumb-circle-custom border-2 border-[#A0634A] scale-105 shadow-editorial">
+                        <img src="dashboard/img/display/salted-caramel-hero.png" class="w-full h-full object-cover" alt="Es Kopi Susu Gula Aren">
+                    </div>
+                    <span class="hero-thumb-label-custom font-medium mt-0.5">
+                        Es Kopi Susu Gula Aren · <strong class="text-stone-ink">Rp 22.000</strong>
+                    </span>
                 </div>
-                <div class="hero-thumbnail cursor-pointer w-16 h-16 lg:w-24 lg:h-24 rounded-full border-2 border-stone-ink/10 opacity-70 bg-cream overflow-hidden transition-all duration-300 hover:border-clay hover:opacity-100 flex-shrink-0"
-                    data-img="dashboard/img/display/berry-americano-hero.png">
-                    <img src="dashboard/img/display/berry-americano-hero.png" class="w-full h-full object-cover" alt="Berry Americano">
+
+                <div class="hero-thumb-item-custom hero-thumb-item" data-img="dashboard/img/display/berry-americano-hero.png">
+                    <div class="hero-thumbnail hero-thumb-circle-custom border border-stone-ink/20 opacity-70 hover:border-[#A0634A] hover:opacity-100">
+                        <img src="dashboard/img/display/berry-americano-hero.png" class="w-full h-full object-cover" alt="Strawberry Latte">
+                    </div>
+                    <span class="hero-thumb-label-custom font-medium mt-0.5">
+                        Strawberry Latte · <strong class="text-stone-ink">Rp 24.000</strong>
+                    </span>
                 </div>
-                <div class="hero-thumbnail cursor-pointer w-16 h-16 lg:w-24 lg:h-24 rounded-full border-2 border-stone-ink/10 opacity-70 bg-cream overflow-hidden transition-all duration-300 hover:border-clay hover:opacity-100 flex-shrink-0"
-                    data-img="dashboard/img/display/creamy-matcha-hero.png">
-                    <img src="dashboard/img/display/creamy-matcha-hero.png" class="w-full h-full object-cover" alt="Creamy Matcha">
+
+                <div class="hero-thumb-item-custom hero-thumb-item" data-img="dashboard/img/display/creamy-matcha-hero.png">
+                    <div class="hero-thumbnail hero-thumb-circle-custom border border-stone-ink/20 opacity-70 hover:border-[#A0634A] hover:opacity-100">
+                        <img src="dashboard/img/display/creamy-matcha-hero.png" class="w-full h-full object-cover" alt="Matcha Latte">
+                    </div>
+                    <span class="hero-thumb-label-custom font-medium mt-0.5">
+                        Matcha Latte · <strong class="text-stone-ink">Rp 25.000</strong>
+                    </span>
                 </div>
             </div>
+
+            <!-- Mobile Only: CTA, Info Produk & Strip Fitur (Hidden on desktop >= 768px) -->
+            <div class="hero-mobile-only-content">
+                <!-- CTA Vertikal Selebar Penuh -->
+                <div class="hero-cta-mobile-col">
+                    <a href="#produk" class="btn-pesan-sekarang">
+                        Pesan Sekarang &rarr;
+                    </a>
+                    <a href="menu.php" class="btn-lihat-menu">
+                        Lihat Menu
+                    </a>
+                </div>
+
+                <!-- Info Produk (Chip Kecil #6B5E55) -->
+                <div class="hero-chips-wrap">
+                    <span class="hero-chip-item">Mulai Rp 18.000</span>
+                    <span class="hero-chip-item">
+                        <span class="text-[#A0634A]">★</span> 4,9
+                    </span>
+                    <span class="hero-chip-item">Tiba dalam 25 menit</span>
+                </div>
+
+                <!-- Strip Fitur Mobile: 3 kolom sama lebar, ikon 24px di atas teks 14px -->
+                <div class="hero-features-mobile-grid">
+                    <div class="feature-cell">
+                        <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                            <ellipse cx="12" cy="12" rx="8" ry="9" transform="rotate(-30 12 12)"/>
+                            <path stroke-linecap="round" d="M8.5 5.5C11 9 10 14 15.5 18.5"/>
+                        </svg>
+                        <span class="feature-text">Biji Kopi<br>Pilihan</span>
+                    </div>
+
+                    <div class="feature-cell">
+                        <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/>
+                        </svg>
+                        <span class="feature-text">Resep Autentik<br>Setiap Seduhan</span>
+                    </div>
+
+                    <div class="feature-cell">
+                        <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                            <circle cx="5.5" cy="17.5" r="3.5"/>
+                            <circle cx="18.5" cy="17.5" r="3.5"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 6h-2.5l-3 7h6l2-4H15V6zM5.5 17.5l4-7h5.5M18.5 17.5l-2-4.5"/>
+                        </svg>
+                        <span class="feature-text">Pengiriman<br>Cepat & Aman</span>
+                    </div>
+                </div>
+            </div>
+
         </div> 
 
     <!-- MARQUEE -->
@@ -594,7 +1106,7 @@ if (isset($_POST['submit_beli'])) {
     <!-- PROMO / NEWSLETTER -->
     <section class="max-w-[1400px] mx-auto px-6 lg:px-12 mb-20">
         <div class="bg-[#241E1C] rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
-            <div class="relative z-10">
+            <digiv class="relative z-10">
                 <h3 class="font-serif text-2xl md:text-3xl text-white mb-2">Jangan Lewatkan<br>Promo Spesial Kami!</h3>
                 <p class="text-sand/60 text-xs max-w-sm">Dapatkan kabar terbaru, menu baru, dan promo menarik dari Kopi Singgah langsung ke email kamu.</p>
             </div>
@@ -654,24 +1166,71 @@ if (isset($_POST['submit_beli'])) {
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Script untuk Hero Thumbnail
-            const thumbnails = document.querySelectorAll(".hero-thumbnail");
+            localStorage.removeItem('theme');
+            document.documentElement.classList.remove('dark');
+
+            // Script Drawer Mobile
+            const burgerBtn = document.getElementById("mobileBurgerBtn");
+            const drawer = document.getElementById("mobileDrawer");
+            const backdrop = document.getElementById("mobileDrawerBackdrop");
+            const closeDrawerBtn = document.getElementById("closeDrawerBtn");
+
+            function openDrawer() {
+                if (!drawer || !backdrop || !burgerBtn) return;
+                drawer.classList.remove("-translate-x-full");
+                drawer.classList.add("translate-x-0");
+                backdrop.classList.remove("opacity-0", "pointer-events-none");
+                backdrop.classList.add("opacity-100", "pointer-events-auto");
+                burgerBtn.setAttribute("aria-expanded", "true");
+                drawer.setAttribute("aria-hidden", "false");
+                document.body.classList.add("overflow-hidden");
+            }
+
+            function closeDrawer() {
+                if (!drawer || !backdrop || !burgerBtn) return;
+                drawer.classList.remove("translate-x-0");
+                drawer.classList.add("-translate-x-full");
+                backdrop.classList.remove("opacity-100", "pointer-events-auto");
+                backdrop.classList.add("opacity-0", "pointer-events-none");
+                burgerBtn.setAttribute("aria-expanded", "false");
+                drawer.setAttribute("aria-hidden", "true");
+                document.body.classList.remove("overflow-hidden");
+            }
+
+            if (burgerBtn) burgerBtn.addEventListener("click", openDrawer);
+            if (closeDrawerBtn) closeDrawerBtn.addEventListener("click", closeDrawer);
+            if (backdrop) backdrop.addEventListener("click", closeDrawer);
+
+            document.addEventListener("keydown", function(e) {
+                if (e.key === "Escape" && drawer && !drawer.classList.contains("-translate-x-full")) {
+                    closeDrawer();
+                }
+            });
+
+            document.querySelectorAll(".drawer-link").forEach(link => {
+                link.addEventListener("click", closeDrawer);
+            });
+
+            // Script untuk Hero Thumbnail (Mobile & Desktop)
+            const thumbItems = document.querySelectorAll(".hero-thumb-item");
             const mainImage = document.getElementById("mainHeroImage");
 
-            if (mainImage && thumbnails.length > 0) {
-                thumbnails.forEach(thumb => {
-                    thumb.addEventListener("click", function() {
-                        thumbnails.forEach(t => {
-                            t.classList.remove("border-clay", "scale-110", "shadow-editorial");
-                            t.classList.add("border-stone-ink/10", "opacity-70");
+            if (mainImage && thumbItems.length > 0) {
+                thumbItems.forEach(item => {
+                    item.addEventListener("click", function() {
+                        thumbItems.forEach(t => {
+                            const ring = t.querySelector(".hero-thumbnail") || t;
+                            ring.classList.remove("border-2", "border-[#A0634A]", "border-clay", "scale-105", "scale-110", "shadow-editorial");
+                            ring.classList.add("border", "border-stone-ink/20", "opacity-70");
                         });
 
-                        this.classList.remove("border-stone-ink/10", "opacity-70");
-                        this.classList.add("border-clay", "scale-110", "shadow-editorial");
+                        const activeRing = this.querySelector(".hero-thumbnail") || this;
+                        activeRing.classList.remove("border", "border-stone-ink/20", "opacity-70");
+                        activeRing.classList.add("border-2", "border-[#A0634A]", "scale-105", "shadow-editorial");
 
                         mainImage.style.opacity = 0; 
                         setTimeout(() => {
-                            const newSrc = this.getAttribute("data-img");
+                            const newSrc = this.getAttribute("data-img") || activeRing.getAttribute("data-img");
                             mainImage.setAttribute("src", newSrc); 
                             mainImage.style.opacity = 1; 
                         }, 150); 

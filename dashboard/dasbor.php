@@ -95,6 +95,8 @@ if (isset($_POST['tambah']) || isset($_POST['update'])) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script>
+        document.documentElement.classList.remove('dark');
+        try { localStorage.removeItem('theme'); } catch(e) {}
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -269,6 +271,12 @@ if (isset($_POST['tambah']) || isset($_POST['update'])) {
                                 </svg>
                                 Produk
                             </a></li>
+                        <li><a href="kategori.php" class="nav-item-soft flex items-center gap-3 py-2.5 px-3 font-sans text-sm font-medium">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                                </svg>
+                                Kategori
+                            </a></li>
                         <li><a href="../admin_pelanggan.php" class="nav-item-soft flex items-center gap-3 py-2.5 px-3 font-sans text-sm font-medium">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -295,26 +303,6 @@ if (isset($_POST['tambah']) || isset($_POST['update'])) {
                     </svg>
                     Sign out
                 </a>
-            </div>
-
-            <div class="px-4 py-4 border-t border-stone-ink/5 dark:border-cream/5">
-                <div class="text-[10px] uppercase tracking-[0.15em] text-stone-ink/40 dark:text-cream/40 font-medium mb-2 px-1">Tampilan</div>
-                <div class="relative">
-                    <button id="theme-toggle" class="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-clay text-cream hover:bg-clay/90 transition-colors text-sm font-medium">
-                        <div class="flex items-center gap-2">
-                            <span id="theme-icon">☾</span>
-                            <span id="theme-label">Dark</span>
-                        </div>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                    </button>
-                    <div id="theme-dropdown" class="hidden absolute bottom-full left-0 right-0 mb-2 bg-white dark:bg-stone-ink border border-stone-ink/10 dark:border-cream/10 rounded-xl soft-shadow overflow-hidden">
-                        <button data-theme="light" class="theme-option w-full text-left px-4 py-3 text-sm hover:bg-clay/10 flex items-center gap-3"><span>☀</span><span>Light</span></button>
-                        <button data-theme="dark" class="theme-option w-full text-left px-4 py-3 text-sm hover:bg-clay/10 flex items-center gap-3 border-t border-stone-ink/5 dark:border-cream/5"><span>☾</span><span>Dark</span></button>
-                        <button data-theme="auto" class="theme-option w-full text-left px-4 py-3 text-sm hover:bg-clay/10 flex items-center gap-3 border-t border-stone-ink/5 dark:border-cream/5"><span>◐</span><span>Auto</span></button>
-                    </div>
-                </div>
             </div>
         </aside>
 
@@ -392,7 +380,12 @@ if (isset($_POST['tambah']) || isset($_POST['update'])) {
                         <!-- Kategori & Foto -->
                         <div class="grid md:grid-cols-2 gap-5">
                             <div>
-                                <label class="block text-xs font-medium text-stone-ink/60 dark:text-cream/60 mb-2">Kategori</label>
+                                <div class="flex items-center justify-between mb-2">
+                                    <label class="block text-xs font-medium text-stone-ink/60 dark:text-cream/60">Kategori</label>
+                                    <a href="kategori.php" class="text-[11px] text-clay hover:underline font-medium flex items-center gap-1">
+                                        + Kelola Kategori
+                                    </a>
+                                </div>
                                 <select name="kategori" required
                                     class="input-soft w-full px-4 py-3 rounded-xl appearance-none cursor-pointer text-sm">
                                     <option value="" disabled <?= empty($id_kategori) ? 'selected' : '' ?>>Pilih Kategori ...</option>
@@ -520,54 +513,8 @@ if (isset($_POST['tambah']) || isset($_POST['update'])) {
     </div>
 
     <script>
-        // === Theme Toggle ===
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeDropdown = document.getElementById('theme-dropdown');
-        const themeLabel = document.getElementById('theme-label');
-        const themeIcon = document.getElementById('theme-icon');
-        const themeOptions = document.querySelectorAll('.theme-option');
-
-        const getStoredTheme = () => localStorage.getItem('theme') || 'dark';
-        const setStoredTheme = (theme) => localStorage.setItem('theme', theme);
-
-        const applyTheme = (theme) => {
-            let actualTheme = theme;
-            if (theme === 'auto') {
-                actualTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            }
-            if (actualTheme === 'dark') {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-            themeLabel.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
-            themeIcon.textContent = theme === 'light' ? '☀' : theme === 'dark' ? '☾' : '◐';
-        };
-
-        themeToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            themeDropdown.classList.toggle('hidden');
-        });
-
-        document.addEventListener('click', () => {
-            themeDropdown.classList.add('hidden');
-        });
-
-        themeOptions.forEach(option => {
-            option.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const theme = option.getAttribute('data-theme');
-                setStoredTheme(theme);
-                applyTheme(theme);
-                themeDropdown.classList.add('hidden');
-            });
-        });
-
-        applyTheme(getStoredTheme());
-
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-            if (getStoredTheme() === 'auto') applyTheme('auto');
-        });
+        localStorage.removeItem('theme');
+        document.documentElement.classList.remove('dark');
 
         // === File Upload Cancel ===
         const fileInput = document.getElementById('poto');

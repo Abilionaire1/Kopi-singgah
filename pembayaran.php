@@ -296,9 +296,9 @@ $is_paid = in_array($status_trx, ['selesai', 'lunas', 'success', 'paid']);
                 <a href="profile.php" class="w-full bg-stone-ink text-white py-3 rounded-xl font-semibold text-sm hover:bg-clay transition block text-center">
                     Lihat Riwayat Pesanan
                 </a>
-                <button onclick="window.print()" class="w-full border border-stone-ink text-stone-ink py-3 rounded-xl font-semibold text-sm hover:bg-stone-ink hover:text-white transition">
+                <a href="cetak_invoice.php?id=<?= $id_transaksi ?>" target="_blank" class="w-full border border-stone-ink text-stone-ink py-3 rounded-xl font-semibold text-sm hover:bg-stone-ink hover:text-white transition block text-center">
                     Cetak Struk
-                </button>
+                </a>
             </div>
         </div>
     </div>

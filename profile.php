@@ -83,7 +83,10 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+        document.documentElement.classList.remove('dark');
+        try { localStorage.removeItem('theme'); } catch(e) {}
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -111,12 +114,12 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
         .swal2-popup { border-radius: 1rem !important; font-family: 'Inter', sans-serif !important; }
     </style>
 </head>
-<body class="bg-cream text-stone-ink font-sans antialiased min-h-screen flex flex-col">
+<body class="bg-cream text-stone-ink font-sans antialiased min-h-screen flex flex-col dark:bg-stone-ink dark:text-cream transition-colors duration-300">
 
     <!-- NAVBAR -->
-    <nav class="w-full bg-cream/90 backdrop-blur-md sticky top-0 z-50 border-b border-sand/30">
+    <nav class="w-full bg-cream/90 dark:bg-stone-ink/90 backdrop-blur-md sticky top-0 z-50 border-b border-sand/30 dark:border-cream/10 transition-colors duration-300">
         <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
-            <a href="index.php" class="font-serif text-xl md:text-2xl font-semibold flex items-center gap-2">
+            <a href="index.php" class="font-serif text-xl md:text-2xl font-semibold flex items-center gap-2 dark:text-cream">
                 <svg class="w-6 h-6 text-clay" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
@@ -124,13 +127,13 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
                 Kopi Singgah.
             </a>
             <div class="hidden lg:flex items-center gap-10 text-sm font-medium">
-                <a href="index.php" class="text-stone-ink/60 hover:text-stone-ink transition">Beranda</a>
-                <a href="menu.php" class="text-stone-ink/60 hover:text-stone-ink transition">Menu</a>
-                <a href="keranjang.php" class="text-stone-ink/60 hover:text-stone-ink transition">Keranjang</a>
+                <a href="index.php" class="text-stone-ink/60 hover:text-stone-ink dark:text-cream/60 dark:hover:text-cream transition">Beranda</a>
+                <a href="menu.php" class="text-stone-ink/60 hover:text-stone-ink dark:text-cream/60 dark:hover:text-cream transition">Menu</a>
+                <a href="keranjang.php" class="text-stone-ink/60 hover:text-stone-ink dark:text-cream/60 dark:hover:text-cream transition">Keranjang</a>
             </div>
-            <div class="flex items-center gap-5">
-                <a href="profile.php" class="border-b border-stone-ink pb-1 font-semibold">Profil</a>
-                <a href="logout.php" class="hidden md:inline-block border border-stone-ink text-stone-ink text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-stone-ink hover:text-white transition">Keluar</a>
+            <div class="flex items-center gap-4">
+                <a href="profile.php" class="border-b border-stone-ink dark:border-cream pb-1 font-semibold dark:text-cream">Profil</a>
+                <a href="logout.php" class="hidden md:inline-block border border-stone-ink dark:border-cream/30 text-stone-ink dark:text-cream text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-stone-ink hover:text-white dark:hover:bg-cream dark:hover:text-stone-ink transition">Keluar</a>
             </div>
         </div>
     </nav>
@@ -139,6 +142,16 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
     <main class="flex-grow py-12">
         <div class="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8">
             
+            <!-- TOMBOL KEMBALI -->
+            <div class="mb-4">
+                <a href="javascript:void(0);" onclick="window.history.length > 1 ? window.history.back() : window.location.href='index.php';" class="inline-flex items-center gap-2 text-xs font-semibold text-stone-ink/60 dark:text-cream/60 hover:text-clay dark:hover:text-clay transition group">
+                    <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                    </svg>
+                    Kembali ke Halaman Sebelumnya
+                </a>
+            </div>
+
             <!-- HEADER PROFIL -->
             <div class="mb-10 text-center md:text-left flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div>
@@ -151,7 +164,7 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
                             </span>
                         <?php endif; ?>
                     </div>
-                    <h1 class="font-serif text-3xl md:text-4xl text-stone-ink">
+                    <h1 class="font-serif text-3xl md:text-4xl text-stone-ink dark:text-cream">
                         Halo, <?= htmlspecialchars($user_name_safe) ?>!
                     </h1>
                 </div>
@@ -168,15 +181,15 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
                 
                 <!-- SIDEBAR NAV -->
                 <div class="w-full md:w-1/3 lg:w-1/4">
-                    <div class="rounded-3xl shadow-soft p-4 flex flex-col gap-2 sticky top-28 border <?php echo $is_admin ? 'bg-royal-coffee border-clay/20 text-gold-sand' : 'bg-white border-sand/30 text-stone-ink'; ?>">
+                    <div class="rounded-3xl shadow-soft p-4 flex flex-col gap-2 sticky top-28 border <?php echo $is_admin ? 'bg-royal-coffee border-clay/20 text-gold-sand' : 'bg-white dark:bg-stone-ink/60 border-sand/30 dark:border-cream/10 text-stone-ink dark:text-cream'; ?>">
                         
-                        <div class="flex flex-col items-center text-center gap-2 mb-4 pb-4 border-b <?php echo $is_admin ? 'border-gold-sand/10' : 'border-sand/30'; ?>">
+                        <div class="flex flex-col items-center text-center gap-2 mb-4 pb-4 border-b <?php echo $is_admin ? 'border-gold-sand/10' : 'border-sand/30 dark:border-cream/10'; ?>">
                             <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mb-2 transition
-                                <?php echo $is_admin ? 'bg-clay text-white' : 'bg-clay/10 text-clay'; ?>">
+                                <?php echo $is_admin ? 'bg-clay text-white' : 'bg-clay/10 text-clay dark:bg-clay/20 dark:text-gold-sand'; ?>">
                                 <?= strtoupper(substr($user_name_safe, 0, 1)); ?>
                             </div>
-                            <div class="font-serif text-lg font-semibold <?php echo $is_admin ? 'text-white' : 'text-stone-ink'; ?>"><?= htmlspecialchars($user_name_safe); ?></div>
-                            <div class="text-xs <?php echo $is_admin ? 'text-gold-sand/70' : 'text-stone-ink/60'; ?>"><?= htmlspecialchars($user_email_safe); ?></div>
+                            <div class="font-serif text-lg font-semibold <?php echo $is_admin ? 'text-white' : 'text-stone-ink dark:text-cream'; ?>"><?= htmlspecialchars($user_name_safe); ?></div>
+                            <div class="text-xs <?php echo $is_admin ? 'text-gold-sand/70' : 'text-stone-ink/60 dark:text-cream/60'; ?>"><?= htmlspecialchars($user_email_safe); ?></div>
                         </div>
 
                         <button onclick="openTab('profil')" id="btn-profil" class="tab-btn w-full text-left px-5 py-3.5 rounded-2xl text-sm font-semibold transition 
@@ -192,7 +205,7 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
                             Keamanan
                         </button>
                         
-                        <div class="h-px my-2 mx-4 <?php echo $is_admin ? 'bg-gold-sand/10' : 'bg-sand/30'; ?>"></div>
+                        <div class="h-px my-2 mx-4 <?php echo $is_admin ? 'bg-gold-sand/10' : 'bg-sand/30 dark:bg-cream/10'; ?>"></div>
                         
                         <a href="logout.php" class="w-full text-left px-5 py-3.5 rounded-2xl text-sm font-semibold text-red-400 hover:bg-red-500/10 transition flex items-center justify-between">
                             Keluar Akun
@@ -205,32 +218,32 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
                 <div class="w-full md:w-2/3 lg:w-3/4">
                     
                     <!-- TAB 1: INFORMASI AKUN -->
-                    <div id="tab-profil" class="tab-content block bg-white rounded-[2rem] shadow-soft p-8 md:p-10">
-                        <h2 class="font-serif text-2xl mb-6 border-b border-sand/30 pb-4">Informasi Akun</h2>
+                    <div id="tab-profil" class="tab-content block bg-white dark:bg-stone-ink/50 border border-sand/30 dark:border-cream/10 rounded-[2rem] shadow-soft p-8 md:p-10">
+                        <h2 class="font-serif text-2xl mb-6 border-b border-sand/30 dark:border-cream/10 pb-4 dark:text-cream">Informasi Akun</h2>
                         <form method="POST" action="profile.php" class="space-y-6">
                             <div>
-                                <label class="block text-xs font-bold text-stone-ink/60 uppercase tracking-widest mb-2">Nama Lengkap</label>
-                                <input type="text" name="name" value="<?= htmlspecialchars($user_name_safe) ?>" required class="w-full bg-warm/30 border border-sand/50 rounded-xl px-4 py-3 text-sm text-stone-ink focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition">
+                                <label class="block text-xs font-bold text-stone-ink/60 dark:text-cream/60 uppercase tracking-widest mb-2">Nama Lengkap</label>
+                                <input type="text" name="name" value="<?= htmlspecialchars($user_name_safe) ?>" required class="w-full bg-warm/30 dark:bg-stone-ink/40 border border-sand/50 dark:border-cream/10 rounded-xl px-4 py-3 text-sm text-stone-ink dark:text-cream focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition">
                             </div>
                             
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label class="block text-xs font-bold text-stone-ink/60 uppercase tracking-widest mb-2">Email</label>
-                                    <input type="email" name="email" value="<?= htmlspecialchars($user_email_safe) ?>" required class="w-full bg-warm/30 border border-sand/50 rounded-xl px-4 py-3 text-sm text-stone-ink focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition">
+                                    <label class="block text-xs font-bold text-stone-ink/60 dark:text-cream/60 uppercase tracking-widest mb-2">Email</label>
+                                    <input type="email" name="email" value="<?= htmlspecialchars($user_email_safe) ?>" required class="w-full bg-warm/30 dark:bg-stone-ink/40 border border-sand/50 dark:border-cream/10 rounded-xl px-4 py-3 text-sm text-stone-ink dark:text-cream focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition">
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold text-stone-ink/60 uppercase tracking-widest mb-2">No. Telepon (HP)</label>
-                                    <input type="text" name="hp" value="<?= htmlspecialchars($user_hp_safe) ?>" placeholder="08xxxxxxxxxx" class="w-full bg-warm/30 border border-sand/50 rounded-xl px-4 py-3 text-sm text-stone-ink focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition">
+                                    <label class="block text-xs font-bold text-stone-ink/60 dark:text-cream/60 uppercase tracking-widest mb-2">No. Telepon (HP)</label>
+                                    <input type="text" name="hp" value="<?= htmlspecialchars($user_hp_safe) ?>" placeholder="08xxxxxxxxxx" class="w-full bg-warm/30 dark:bg-stone-ink/40 border border-sand/50 dark:border-cream/10 rounded-xl px-4 py-3 text-sm text-stone-ink dark:text-cream focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition">
                                 </div>
                             </div>
                             
                             <div>
-                                <label class="block text-xs font-bold text-stone-ink/60 uppercase tracking-widest mb-2">Alamat Pengiriman</label>
-                                <textarea name="alamat" rows="3" placeholder="Tuliskan alamat pengiriman lengkap..." class="w-full bg-warm/30 border border-sand/50 rounded-xl px-4 py-3 text-sm text-stone-ink focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition"><?= htmlspecialchars($user_alamat_safe) ?></textarea>
+                                <label class="block text-xs font-bold text-stone-ink/60 dark:text-cream/60 uppercase tracking-widest mb-2">Alamat Pengiriman</label>
+                                <textarea name="alamat" rows="3" placeholder="Tuliskan alamat pengiriman lengkap..." class="w-full bg-warm/30 dark:bg-stone-ink/40 border border-sand/50 dark:border-cream/10 rounded-xl px-4 py-3 text-sm text-stone-ink dark:text-cream focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition"><?= htmlspecialchars($user_alamat_safe) ?></textarea>
                             </div>
                             
                             <div class="pt-4 flex justify-end">
-                                <button type="submit" name="update_profil" class="bg-stone-ink text-white px-8 py-3 rounded-xl font-semibold hover:bg-clay transition-colors">
+                                <button type="submit" name="update_profil" class="bg-stone-ink dark:bg-clay text-white px-8 py-3 rounded-xl font-semibold hover:bg-clay dark:hover:bg-clay/80 transition-colors">
                                     Simpan Perubahan
                                 </button>
                             </div>
@@ -238,8 +251,8 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
                     </div>
 
                     <!-- TAB 2: RIWAYAT PESANAN (DINAMIS SAMA PEMBAYARAN.PHP) -->
-                    <div id="tab-pesanan" class="tab-content hidden bg-white rounded-[2rem] shadow-soft p-8 md:p-10">
-                        <h2 class="font-serif text-2xl mb-6 border-b border-sand/30 pb-4">Riwayat Pesanan</h2>
+                    <div id="tab-pesanan" class="tab-content hidden bg-white dark:bg-stone-ink/50 border border-sand/30 dark:border-cream/10 rounded-[2rem] shadow-soft p-8 md:p-10">
+                        <h2 class="font-serif text-2xl mb-6 border-b border-sand/30 dark:border-cream/10 pb-4 dark:text-cream">Riwayat Pesanan</h2>
                         
                         <?php if(mysqli_num_rows($query_transaksi) > 0) { ?>
                             <div class="space-y-4">
@@ -252,13 +265,13 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
                                     $trx_status_safe  = strtolower($trx['status'] ?? $trx['status_pembayaran'] ?? 'pending');
                                     $trx_is_paid      = in_array($trx_status_safe, ['selesai', 'lunas', 'success', 'paid'], true);
                                 ?>
-                                    <div class="border border-sand/40 rounded-2xl p-5 hover:border-clay transition">
+                                    <div class="border border-sand/40 dark:border-cream/10 rounded-2xl p-5 hover:border-clay transition bg-warm/10 dark:bg-stone-ink/30">
                                         <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
                                             <div>
-                                                <div class="text-xs text-stone-ink/50 font-semibold mb-1">
+                                                <div class="text-xs text-stone-ink/50 dark:text-cream/50 font-semibold mb-1">
                                                     <?= date('d M Y', strtotime($trx_tanggal_safe)) ?> &bull; INV-<?= str_pad($trx_id_safe, 5, '0', STR_PAD_LEFT) ?>
                                                 </div>
-                                                <div class="font-bold text-stone-ink text-lg">
+                                                <div class="font-bold text-stone-ink dark:text-cream text-lg">
                                                     Rp <?= number_format($trx_harga_safe, 0, ',', '.') ?>
                                                 </div>
                                             </div>
@@ -267,11 +280,11 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
                                             <div class="flex items-center gap-3">
                                                 <div id="badge-<?= $trx_id_safe ?>">
                                                     <?php if($trx_is_paid): ?>
-                                                        <span class="bg-sage/10 text-sage border border-sage/20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
+                                                        <span class="bg-sage/10 text-sage border border-sage/20 dark:bg-sage/20 dark:text-sage px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
                                                             Selesai
                                                         </span>
                                                     <?php else: ?>
-                                                        <span class="bg-amber-100 text-amber-800 border border-amber-300 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
+                                                        <span class="bg-amber-100 text-amber-800 border border-amber-300 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-700/50 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
                                                             Pending
                                                         </span>
                                                     <?php endif; ?>
@@ -279,7 +292,7 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
                                                 
                                                 <div id="btn-<?= $trx_id_safe ?>">
                                                     <?php if($trx_is_paid): ?>
-                                                        <a href="cetak_invoice.php?id=<?= $trx_id_safe ?>" class="border border-stone-ink/30 text-stone-ink hover:bg-stone-ink hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-medium transition flex items-center gap-1">
+                                                        <a href="cetak_invoice.php?id=<?= $trx_id_safe ?>" class="border border-stone-ink/30 dark:border-cream/20 text-stone-ink dark:text-cream hover:bg-stone-ink hover:text-white dark:hover:bg-cream dark:hover:text-stone-ink px-3.5 py-1.5 rounded-xl text-xs font-medium transition flex items-center gap-1">
                                                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
                                                             Cetak
                                                         </a>
@@ -296,25 +309,25 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
                             </div>
                         <?php } else { ?>
                             <div class="text-center py-10">
-                                <div class="w-16 h-16 bg-warm rounded-full flex items-center justify-center mx-auto mb-4 text-stone-ink/30">
+                                <div class="w-16 h-16 bg-warm dark:bg-stone-ink/60 rounded-full flex items-center justify-center mx-auto mb-4 text-stone-ink/30 dark:text-cream/30">
                                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                                 </div>
-                                <p class="text-stone-ink/60 text-sm mb-4">Kamu belum pernah melakukan pesanan.</p>
+                                <p class="text-stone-ink/60 dark:text-cream/60 text-sm mb-4">Kamu belum pernah melakukan pesanan.</p>
                                 <a href="menu.php" class="text-clay font-semibold hover:underline text-sm">Mulai Belanja &rarr;</a>
                             </div>
                         <?php } ?>
                     </div>
 
                     <!-- TAB 3: KEAMANAN -->
-                    <div id="tab-keamanan" class="tab-content hidden bg-white rounded-[2rem] shadow-soft p-8 md:p-10">
-                        <h2 class="font-serif text-2xl mb-6 border-b border-sand/30 pb-4">Ubah Password</h2>
+                    <div id="tab-keamanan" class="tab-content hidden bg-white dark:bg-stone-ink/50 border border-sand/30 dark:border-cream/10 rounded-[2rem] shadow-soft p-8 md:p-10">
+                        <h2 class="font-serif text-2xl mb-6 border-b border-sand/30 dark:border-cream/10 pb-4 dark:text-cream">Ubah Password</h2>
                         <form method="POST" action="profile.php" class="space-y-6 max-w-md">
                             <div>
-                                <label class="block text-xs font-bold text-stone-ink/60 uppercase tracking-widest mb-2">Password Baru</label>
-                                <input type="password" name="password_baru" required class="w-full bg-warm/30 border border-sand/50 rounded-xl px-4 py-3 text-sm text-stone-ink focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition" placeholder="Masukkan password baru">
+                                <label class="block text-xs font-bold text-stone-ink/60 dark:text-cream/60 uppercase tracking-widest mb-2">Password Baru</label>
+                                <input type="password" name="password_baru" required class="w-full bg-warm/30 dark:bg-stone-ink/40 border border-sand/50 dark:border-cream/10 rounded-xl px-4 py-3 text-sm text-stone-ink dark:text-cream focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition" placeholder="Masukkan password baru">
                             </div>
                             <div class="pt-2">
-                                <button type="submit" name="update_password" class="bg-stone-ink text-white px-8 py-3 rounded-xl font-semibold hover:bg-clay transition-colors w-full sm:w-auto">
+                                <button type="submit" name="update_password" class="bg-stone-ink dark:bg-clay text-white px-8 py-3 rounded-xl font-semibold hover:bg-clay dark:hover:bg-clay/80 transition-colors w-full sm:w-auto">
                                     Update Password
                                 </button>
                             </div>
@@ -334,6 +347,9 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
     </footer>
 
     <script>
+        localStorage.removeItem('theme');
+        document.documentElement.classList.remove('dark');
+
         // Fungsi Tab
         function openTab(tabName) {
             const contents = document.querySelectorAll('.tab-content');
@@ -345,15 +361,20 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => {
                 btn.classList.remove('bg-clay', 'text-white');
-                btn.classList.add('<?php echo $is_admin ? 'text-gold-sand' : 'text-stone-ink/70'; ?>');
+                btn.classList.add('<?php echo $is_admin ? "text-gold-sand" : "text-stone-ink/70"; ?>');
             });
 
-            document.getElementById('tab-' + tabName).classList.remove('hidden');
-            document.getElementById('tab-' + tabName).classList.add('block');
+            const targetTab = document.getElementById('tab-' + tabName);
+            if (targetTab) {
+                targetTab.classList.remove('hidden');
+                targetTab.classList.add('block');
+            }
             
             const activeBtn = document.getElementById('btn-' + tabName);
-            activeBtn.classList.add('bg-clay', 'text-white');
-            activeBtn.classList.remove('<?php echo $is_admin ? 'text-gold-sand' : 'text-stone-ink/70'; ?>');
+            if (activeBtn) {
+                activeBtn.classList.add('bg-clay', 'text-white');
+                activeBtn.classList.remove('<?php echo $is_admin ? "text-gold-sand" : "text-stone-ink/70"; ?>');
+            }
         }
 
         // Cek sinyal pembayaran dari localStorage saat halaman dimuat
@@ -370,14 +391,14 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
                     
                     if (badge) {
                         badge.innerHTML = `
-                            <span class="bg-sage/10 text-sage border border-sage/20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
+                            <span class="bg-sage/10 text-sage border border-sage/20 dark:bg-sage/20 dark:text-sage px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
                                 Selesai
                             </span>`;
                     }
                     
                     if (btn) {
                         btn.innerHTML = `
-                            <a href="cetak_invoice.php?id=${encodeURIComponent(trxId)}" class="border border-stone-ink/30 text-stone-ink hover:bg-stone-ink hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-medium transition flex items-center gap-1">
+                            <a href="cetak_invoice.php?id=${encodeURIComponent(trxId)}" class="border border-stone-ink/30 dark:border-cream/20 text-stone-ink dark:text-cream hover:bg-stone-ink hover:text-white dark:hover:bg-cream dark:hover:text-stone-ink px-3.5 py-1.5 rounded-xl text-xs font-medium transition flex items-center gap-1">
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
                                 Cetak
                             </a>`;
