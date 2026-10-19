@@ -52,12 +52,12 @@ if (isset($_POST['submit_beli'])) {
             theme: {
                 extend: {
                     colors: {
-                        cream: '#F9F6F0',
-                        warm: '#F3EFE6',
+                        cream: '#F4EFE6',
+                        warm: '#EAE1D3',
                         'stone-ink': '#1E1B18',
-                        clay: '#A96B51',
-                        sand: '#D8CAB3',
-                        sage: '#7C8A6C',
+                        clay: '#9E583C',
+                        sand: '#C4B29A',
+                        sage: '#6B7A58',
                     },
                     fontFamily: {
                         serif: ['Fraunces', 'serif'],
@@ -65,7 +65,8 @@ if (isset($_POST['submit_beli'])) {
                         handwriting: ['Caveat', 'cursive'],
                     },
                     boxShadow: {
-                        'editorial': '0 4px 20px rgba(0, 0, 0, 0.03)',
+                        'editorial': '0 4px 20px rgba(30, 27, 24, 0.08), 0 1px 3px rgba(30, 27, 24, 0.05)',
+                        'soft': '0 10px 35px rgba(30, 27, 24, 0.09), 0 2px 6px rgba(30, 27, 24, 0.05)',
                     }
                 }
             }
@@ -312,7 +313,7 @@ if (isset($_POST['submit_beli'])) {
 
         .hero-desc-text {
             font-family: 'Inter', sans-serif;
-            color: rgba(30, 27, 24, 0.75);
+            color: rgba(30, 27, 24, 0.85);
             font-size: 15px;
             line-height: 1.6;
             margin: 0 0 1rem 0;
@@ -448,14 +449,15 @@ if (isset($_POST['submit_beli'])) {
             gap: 0.5rem;
             margin-top: 1rem;
             font-size: 13px;
-            font-weight: 500;
-            color: #6B5E55;
+            font-weight: 600;
+            color: #433932;
             text-align: center;
             font-family: 'Inter', sans-serif;
         }
 
         .hero-chip-item {
-            background-color: rgba(216, 202, 179, 0.35);
+            background-color: rgba(196, 178, 154, 0.45);
+            border: 1px solid rgba(196, 178, 154, 0.7);
             padding: 0.25rem 0.75rem;
             border-radius: 9999px;
             display: inline-flex;
@@ -725,10 +727,10 @@ if (isset($_POST['submit_beli'])) {
                             Lihat Menu
                         </a>
                     </div>
-                    <p class="text-xs text-[#8B827A] mt-4 flex items-center gap-1.5">
+                    <p class="text-xs text-stone-ink/75 mt-4 flex items-center gap-1.5 font-medium">
                         <span>Mulai Rp 18.000</span>
                         <span>·</span>
-                        <span class="text-clay">★ 4,9</span>
+                        <span class="text-clay font-bold">★ 4,9</span>
                         <span>·</span>
                         <span>Tiba dalam 25 menit</span>
                     </p>
@@ -953,7 +955,7 @@ if (isset($_POST['submit_beli'])) {
                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-1">
                                     <?php foreach ($slide_items as $data): ?>
                                         <!-- Product Card Dynamic -->
-                                        <div class="bg-white rounded-2xl p-3 shadow-editorial group hover:-translate-y-1 transition duration-300 flex flex-col h-full">
+                                        <div class="bg-white rounded-2xl p-3 shadow-editorial border border-sand/50 group hover:-translate-y-1 transition duration-300 flex flex-col h-full">
                                             <div class="relative h-48 rounded-xl overflow-hidden mb-4 bg-sand/20 shrink-0">
                                                 <!-- Badge Kategori Dinamis -->
                                                 <div class="absolute top-2 left-2 bg-white/90 text-[9px] font-bold px-2 py-1 rounded-md z-10 uppercase">
@@ -1064,10 +1066,10 @@ if (isset($_POST['submit_beli'])) {
             <!-- Cards Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
                 <!-- Card 1 -->
-                <div class="bg-white p-6 rounded-2xl border border-sand/40 shadow-sm flex flex-col justify-between h-full">
+                <div class="bg-white p-6 rounded-2xl border border-sand/60 shadow-editorial flex flex-col justify-between h-full">
                     <div>
-                        <div class="text-clay text-xs mb-3 tracking-widest">★★★★★</div>
-                        <p class="text-stone-ink/70 text-[13px] leading-relaxed mb-6">"Butterscotch-nya juara! Gak kemanisan, kopinya tetep berasa. Cocok banget buat nemenin nugas seharian."</p>
+                        <div class="text-clay text-xs mb-3 tracking-widest font-bold">★★★★★</div>
+                        <p class="text-stone-ink/80 text-[13px] leading-relaxed mb-6">"Butterscotch-nya juara! Gak kemanisan, kopinya tetep berasa. Cocok banget buat nemenin nugas seharian."</p>
                     </div>
                     <div class="flex items-center gap-3">
                         <img src="https://i.pravatar.cc/100?img=15" class="w-8 h-8 rounded-full object-cover" alt="Raka">
@@ -1075,10 +1077,10 @@ if (isset($_POST['submit_beli'])) {
                     </div>
                 </div>
                 <!-- Card 2 -->
-                <div class="bg-white p-6 rounded-2xl border border-sand/40 shadow-sm flex flex-col justify-between h-full">
+                <div class="bg-white p-6 rounded-2xl border border-sand/60 shadow-editorial flex flex-col justify-between h-full">
                     <div>
-                        <div class="text-clay text-xs mb-3 tracking-widest">★★★★★</div>
-                        <p class="text-stone-ink/70 text-[13px] leading-relaxed mb-6">"Tempat asik, kopinya proper. Favorit gue tetep Kopi Aren sih, cream-nya pas dan ga bikin eneg."</p>
+                        <div class="text-clay text-xs mb-3 tracking-widest font-bold">★★★★★</div>
+                        <p class="text-stone-ink/80 text-[13px] leading-relaxed mb-6">"Tempat asik, kopinya proper. Favorit gue tetep Kopi Aren sih, cream-nya pas dan ga bikin eneg."</p>
                     </div>
                     <div class="flex items-center gap-3">
                         <img src="https://i.pravatar.cc/100?img=9" class="w-8 h-8 rounded-full object-cover" alt="Dinda">
@@ -1086,10 +1088,10 @@ if (isset($_POST['submit_beli'])) {
                     </div>
                 </div>
                 <!-- Card 3 -->
-                <div class="bg-white p-6 rounded-2xl border border-sand/40 shadow-sm flex flex-col justify-between h-full">
+                <div class="bg-white p-6 rounded-2xl border border-sand/60 shadow-editorial flex flex-col justify-between h-full">
                     <div>
-                        <div class="text-clay text-xs mb-3 tracking-widest">★★★★★</div>
-                        <p class="text-stone-ink/70 text-[13px] leading-relaxed mb-6">"Harganya pas di kantong pelajar, tapi rasanya istimewa. Bakal sering ke sini kelihatannya, sepulang sekolah."</p>
+                        <div class="text-clay text-xs mb-3 tracking-widest font-bold">★★★★★</div>
+                        <p class="text-stone-ink/80 text-[13px] leading-relaxed mb-6">"Harganya pas di kantong pelajar, tapi rasanya istimewa. Bakal sering ke sini kelihatannya, sepulang sekolah."</p>
                     </div>
                     <div class="flex items-center gap-3">
                         <img src="https://i.pravatar.cc/100?img=33" class="w-8 h-8 rounded-full object-cover" alt="Rina">

@@ -95,12 +95,12 @@ $kategori = $data['nama_kategori'];
             theme: {
                 extend: {
                     colors: {
-                        cream: '#F9F6F0',
-                        warm: '#F3EFE6',
+                        cream: '#F4EFE6',
+                        warm: '#EAE1D3',
                         'stone-ink': '#1E1B18',
-                        clay: '#A96B51',
-                        sand: '#D8CAB3',
-                        sage: '#7C8A6C',
+                        clay: '#9E583C',
+                        sand: '#C4B29A',
+                        sage: '#6B7A58',
                     },
                     fontFamily: {
                         serif: ['Fraunces', 'serif'],
@@ -108,7 +108,8 @@ $kategori = $data['nama_kategori'];
                         handwriting: ['Caveat', 'cursive'],
                     },
                     boxShadow: {
-                        'editorial': '0 4px 20px rgba(0, 0, 0, 0.03)',
+                        'editorial': '0 4px 20px rgba(30, 27, 24, 0.08), 0 1px 3px rgba(30, 27, 24, 0.05)',
+                        'soft': '0 10px 35px rgba(30, 27, 24, 0.09), 0 2px 6px rgba(30, 27, 24, 0.05)',
                     }
                 }
             }
@@ -199,7 +200,7 @@ $kategori = $data['nama_kategori'];
             </nav>
 
             <!-- Product Wrapper -->
-            <div class="bg-white rounded-[2rem] p-6 md:p-10 shadow-editorial flex flex-col lg:flex-row gap-10 md:gap-16 items-center">
+            <div class="bg-white rounded-[2rem] p-6 md:p-10 shadow-editorial border border-sand/50 flex flex-col lg:flex-row gap-10 md:gap-16 items-center">
                 
                 <!-- Image Side -->
                 <div class="w-full lg:w-1/2 relative">

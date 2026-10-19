@@ -90,12 +90,12 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
             theme: {
                 extend: {
                     colors: {
-                        cream: '#F9F6F0',
-                        warm: '#F3EFE6',
+                        cream: '#F4EFE6',
+                        warm: '#EAE1D3',
                         'stone-ink': '#1E1B18',
-                        clay: '#A96B51',
-                        sand: '#D8CAB3',
-                        sage: '#7C8A6C',
+                        clay: '#9E583C',
+                        sand: '#C4B29A',
+                        sage: '#6B7A58',
                         'royal-coffee': '#3D2B20', 
                         'gold-sand': '#E6D2B5',    
                     },
@@ -104,7 +104,7 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
                         sans: ['Inter', 'sans-serif'],
                     },
                     boxShadow: {
-                        'soft': '0 10px 40px rgba(0, 0, 0, 0.05)',
+                        'soft': '0 10px 35px rgba(30, 27, 24, 0.09), 0 2px 6px rgba(30, 27, 24, 0.05)',
                     }
                 }
             }
@@ -181,15 +181,15 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
                 
                 <!-- SIDEBAR NAV -->
                 <div class="w-full md:w-1/3 lg:w-1/4">
-                    <div class="rounded-3xl shadow-soft p-4 flex flex-col gap-2 sticky top-28 border <?php echo $is_admin ? 'bg-royal-coffee border-clay/20 text-gold-sand' : 'bg-white dark:bg-stone-ink/60 border-sand/30 dark:border-cream/10 text-stone-ink dark:text-cream'; ?>">
+                    <div class="rounded-3xl shadow-soft p-4 flex flex-col gap-2 sticky top-28 border <?php echo $is_admin ? 'bg-royal-coffee border-clay/20 text-gold-sand' : 'bg-white border-sand/50 text-stone-ink'; ?>">
                         
-                        <div class="flex flex-col items-center text-center gap-2 mb-4 pb-4 border-b <?php echo $is_admin ? 'border-gold-sand/10' : 'border-sand/30 dark:border-cream/10'; ?>">
+                        <div class="flex flex-col items-center text-center gap-2 mb-4 pb-4 border-b <?php echo $is_admin ? 'border-gold-sand/10' : 'border-sand/40'; ?>">
                             <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mb-2 transition
-                                <?php echo $is_admin ? 'bg-clay text-white' : 'bg-clay/10 text-clay dark:bg-clay/20 dark:text-gold-sand'; ?>">
+                                <?php echo $is_admin ? 'bg-clay text-white' : 'bg-clay/10 text-clay'; ?>">
                                 <?= strtoupper(substr($user_name_safe, 0, 1)); ?>
                             </div>
-                            <div class="font-serif text-lg font-semibold <?php echo $is_admin ? 'text-white' : 'text-stone-ink dark:text-cream'; ?>"><?= htmlspecialchars($user_name_safe); ?></div>
-                            <div class="text-xs <?php echo $is_admin ? 'text-gold-sand/70' : 'text-stone-ink/60 dark:text-cream/60'; ?>"><?= htmlspecialchars($user_email_safe); ?></div>
+                            <div class="font-serif text-lg font-semibold <?php echo $is_admin ? 'text-white' : 'text-stone-ink'; ?>"><?= htmlspecialchars($user_name_safe); ?></div>
+                            <div class="text-xs <?php echo $is_admin ? 'text-gold-sand/70' : 'text-stone-ink/70 font-medium'; ?>"><?= htmlspecialchars($user_email_safe); ?></div>
                         </div>
 
                         <button onclick="openTab('profil')" id="btn-profil" class="tab-btn w-full text-left px-5 py-3.5 rounded-2xl text-sm font-semibold transition 
@@ -218,32 +218,32 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
                 <div class="w-full md:w-2/3 lg:w-3/4">
                     
                     <!-- TAB 1: INFORMASI AKUN -->
-                    <div id="tab-profil" class="tab-content block bg-white dark:bg-stone-ink/50 border border-sand/30 dark:border-cream/10 rounded-[2rem] shadow-soft p-8 md:p-10">
-                        <h2 class="font-serif text-2xl mb-6 border-b border-sand/30 dark:border-cream/10 pb-4 dark:text-cream">Informasi Akun</h2>
+                    <div id="tab-profil" class="tab-content block bg-white border border-sand/50 rounded-[2rem] shadow-soft p-8 md:p-10">
+                        <h2 class="font-serif text-2xl mb-6 border-b border-sand/40 pb-4">Informasi Akun</h2>
                         <form method="POST" action="profile.php" class="space-y-6">
                             <div>
-                                <label class="block text-xs font-bold text-stone-ink/60 dark:text-cream/60 uppercase tracking-widest mb-2">Nama Lengkap</label>
-                                <input type="text" name="name" value="<?= htmlspecialchars($user_name_safe) ?>" required class="w-full bg-warm/30 dark:bg-stone-ink/40 border border-sand/50 dark:border-cream/10 rounded-xl px-4 py-3 text-sm text-stone-ink dark:text-cream focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition">
+                                <label class="block text-xs font-bold text-stone-ink/70 uppercase tracking-widest mb-2">Nama Lengkap</label>
+                                <input type="text" name="name" value="<?= htmlspecialchars($user_name_safe) ?>" required class="w-full bg-warm/30 border border-sand rounded-xl px-4 py-3 text-sm text-stone-ink focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition">
                             </div>
                             
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label class="block text-xs font-bold text-stone-ink/60 dark:text-cream/60 uppercase tracking-widest mb-2">Email</label>
-                                    <input type="email" name="email" value="<?= htmlspecialchars($user_email_safe) ?>" required class="w-full bg-warm/30 dark:bg-stone-ink/40 border border-sand/50 dark:border-cream/10 rounded-xl px-4 py-3 text-sm text-stone-ink dark:text-cream focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition">
+                                    <label class="block text-xs font-bold text-stone-ink/70 uppercase tracking-widest mb-2">Email</label>
+                                    <input type="email" name="email" value="<?= htmlspecialchars($user_email_safe) ?>" required class="w-full bg-warm/30 border border-sand rounded-xl px-4 py-3 text-sm text-stone-ink focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition">
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold text-stone-ink/60 dark:text-cream/60 uppercase tracking-widest mb-2">No. Telepon (HP)</label>
-                                    <input type="text" name="hp" value="<?= htmlspecialchars($user_hp_safe) ?>" placeholder="08xxxxxxxxxx" class="w-full bg-warm/30 dark:bg-stone-ink/40 border border-sand/50 dark:border-cream/10 rounded-xl px-4 py-3 text-sm text-stone-ink dark:text-cream focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition">
+                                    <label class="block text-xs font-bold text-stone-ink/70 uppercase tracking-widest mb-2">No. Telepon (HP)</label>
+                                    <input type="text" name="hp" value="<?= htmlspecialchars($user_hp_safe) ?>" placeholder="08xxxxxxxxxx" class="w-full bg-warm/30 border border-sand rounded-xl px-4 py-3 text-sm text-stone-ink focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition">
                                 </div>
                             </div>
                             
                             <div>
-                                <label class="block text-xs font-bold text-stone-ink/60 dark:text-cream/60 uppercase tracking-widest mb-2">Alamat Pengiriman</label>
-                                <textarea name="alamat" rows="3" placeholder="Tuliskan alamat pengiriman lengkap..." class="w-full bg-warm/30 dark:bg-stone-ink/40 border border-sand/50 dark:border-cream/10 rounded-xl px-4 py-3 text-sm text-stone-ink dark:text-cream focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition"><?= htmlspecialchars($user_alamat_safe) ?></textarea>
+                                <label class="block text-xs font-bold text-stone-ink/70 uppercase tracking-widest mb-2">Alamat Pengiriman</label>
+                                <textarea name="alamat" rows="3" placeholder="Tuliskan alamat pengiriman lengkap..." class="w-full bg-warm/30 border border-sand rounded-xl px-4 py-3 text-sm text-stone-ink focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition"><?= htmlspecialchars($user_alamat_safe) ?></textarea>
                             </div>
                             
                             <div class="pt-4 flex justify-end">
-                                <button type="submit" name="update_profil" class="bg-stone-ink dark:bg-clay text-white px-8 py-3 rounded-xl font-semibold hover:bg-clay dark:hover:bg-clay/80 transition-colors">
+                                <button type="submit" name="update_profil" class="bg-stone-ink text-white px-8 py-3 rounded-xl font-semibold hover:bg-clay transition-colors shadow-sm">
                                     Simpan Perubahan
                                 </button>
                             </div>
@@ -251,8 +251,8 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
                     </div>
 
                     <!-- TAB 2: RIWAYAT PESANAN (DINAMIS SAMA PEMBAYARAN.PHP) -->
-                    <div id="tab-pesanan" class="tab-content hidden bg-white dark:bg-stone-ink/50 border border-sand/30 dark:border-cream/10 rounded-[2rem] shadow-soft p-8 md:p-10">
-                        <h2 class="font-serif text-2xl mb-6 border-b border-sand/30 dark:border-cream/10 pb-4 dark:text-cream">Riwayat Pesanan</h2>
+                    <div id="tab-pesanan" class="tab-content hidden bg-white border border-sand/50 rounded-[2rem] shadow-soft p-8 md:p-10">
+                        <h2 class="font-serif text-2xl mb-6 border-b border-sand/40 pb-4">Riwayat Pesanan</h2>
                         
                         <?php if(mysqli_num_rows($query_transaksi) > 0) { ?>
                             <div class="space-y-4">
@@ -319,15 +319,15 @@ $user_role_safe     = $user['role'] ?? 'pelanggan';
                     </div>
 
                     <!-- TAB 3: KEAMANAN -->
-                    <div id="tab-keamanan" class="tab-content hidden bg-white dark:bg-stone-ink/50 border border-sand/30 dark:border-cream/10 rounded-[2rem] shadow-soft p-8 md:p-10">
-                        <h2 class="font-serif text-2xl mb-6 border-b border-sand/30 dark:border-cream/10 pb-4 dark:text-cream">Ubah Password</h2>
+                    <div id="tab-keamanan" class="tab-content hidden bg-white border border-sand/50 rounded-[2rem] shadow-soft p-8 md:p-10">
+                        <h2 class="font-serif text-2xl mb-6 border-b border-sand/40 pb-4">Ubah Password</h2>
                         <form method="POST" action="profile.php" class="space-y-6 max-w-md">
                             <div>
-                                <label class="block text-xs font-bold text-stone-ink/60 dark:text-cream/60 uppercase tracking-widest mb-2">Password Baru</label>
-                                <input type="password" name="password_baru" required class="w-full bg-warm/30 dark:bg-stone-ink/40 border border-sand/50 dark:border-cream/10 rounded-xl px-4 py-3 text-sm text-stone-ink dark:text-cream focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition" placeholder="Masukkan password baru">
+                                <label class="block text-xs font-bold text-stone-ink/70 uppercase tracking-widest mb-2">Password Baru</label>
+                                <input type="password" name="password_baru" required class="w-full bg-warm/30 border border-sand rounded-xl px-4 py-3 text-sm text-stone-ink focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition" placeholder="Masukkan password baru">
                             </div>
                             <div class="pt-2">
-                                <button type="submit" name="update_password" class="bg-stone-ink dark:bg-clay text-white px-8 py-3 rounded-xl font-semibold hover:bg-clay dark:hover:bg-clay/80 transition-colors w-full sm:w-auto">
+                                <button type="submit" name="update_password" class="bg-stone-ink text-white px-8 py-3 rounded-xl font-semibold hover:bg-clay transition-colors w-full sm:w-auto shadow-sm">
                                     Update Password
                                 </button>
                             </div>

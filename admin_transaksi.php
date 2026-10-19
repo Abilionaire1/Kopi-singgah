@@ -124,8 +124,9 @@ if (!$result_transactions) {
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = { theme: { extend: {
-            colors: { cream: '#F9F6F0', warm: '#F3EFE6', 'stone-ink': '#1E1B18', clay: '#A96B51', sand: '#D8CAB3' },
-            fontFamily: { serif: ['Fraunces', 'serif'], sans: ['Inter', 'sans-serif'] }
+            colors: { cream: '#F4EFE6', warm: '#EAE1D3', 'stone-ink': '#1E1B18', clay: '#9E583C', sand: '#C4B29A' },
+            fontFamily: { serif: ['Fraunces', 'serif'], sans: ['Inter', 'sans-serif'] },
+            boxShadow: { 'editorial': '0 4px 20px rgba(30, 27, 24, 0.08), 0 1px 3px rgba(30, 27, 24, 0.05)' }
         } } };
     </script>
 </head>

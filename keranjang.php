@@ -152,19 +152,19 @@ if (isset($_GET["aksi"])) {
             theme: {
                 extend: {
                     colors: {
-                        cream: '#F9F6F0',
-                        warm: '#F3EFE6',
+                        cream: '#F4EFE6',
+                        warm: '#EAE1D3',
                         'stone-ink': '#1E1B18',
-                        clay: '#A96B51',
-                        sand: '#D8CAB3',
-                        sage: '#7C8A6C',
+                        clay: '#9E583C',
+                        sand: '#C4B29A',
+                        sage: '#6B7A58',
                     },
                     fontFamily: {
                         serif: ['Fraunces', 'serif'],
                         sans: ['Inter', 'sans-serif'],
                     },
                     boxShadow: {
-                        'soft': '0 10px 40px rgba(0, 0, 0, 0.05)',
+                        'soft': '0 10px 35px rgba(30, 27, 24, 0.09), 0 2px 6px rgba(30, 27, 24, 0.05)',
                     }
                 }
             }
@@ -217,7 +217,7 @@ if (isset($_GET["aksi"])) {
         <div class="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
             
             <?php if (!empty($_SESSION["keranjang"])) { ?>
-                <div class="bg-white rounded-[2rem] shadow-soft p-8 md:p-12">
+                <div class="bg-white rounded-[2rem] shadow-soft border border-sand/50 p-8 md:p-12">
                     
                     <h1 class="font-serif text-4xl text-stone-ink mb-10">Keranjang</h1>
 

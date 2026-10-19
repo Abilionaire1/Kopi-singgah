@@ -164,19 +164,19 @@ if (isset($_POST['proses_checkout'])) {
             theme: {
                 extend: {
                     colors: {
-                        cream: '#F9F6F0',
-                        warm: '#F3EFE6',
+                        cream: '#F4EFE6',
+                        warm: '#EAE1D3',
                         'stone-ink': '#1E1B18',
-                        clay: '#A96B51',
-                        sand: '#D8CAB3',
-                        sage: '#7C8A6C',
+                        clay: '#9E583C',
+                        sand: '#C4B29A',
+                        sage: '#6B7A58',
                     },
                     fontFamily: {
                         serif: ['Fraunces', 'serif'],
                         sans: ['Inter', 'sans-serif'],
                     },
                     boxShadow: {
-                        'soft': '0 10px 40px rgba(0, 0, 0, 0.05)',
+                        'soft': '0 10px 35px rgba(30, 27, 24, 0.09), 0 2px 6px rgba(30, 27, 24, 0.05)',
                     }
                 }
             }

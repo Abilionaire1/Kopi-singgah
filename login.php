@@ -75,19 +75,19 @@ if (isset($_POST['login'])) {
             theme: {
                 extend: {
                     colors: {
-                        cream: '#F9F6F0',
-                        warm: '#F3EFE6',
+                        cream: '#F4EFE6',
+                        warm: '#EAE1D3',
                         'stone-ink': '#1E1B18',
-                        clay: '#A96B51',
-                        sand: '#D8CAB3',
-                        sage: '#7C8A6C',
+                        clay: '#9E583C',
+                        sand: '#C4B29A',
+                        sage: '#6B7A58',
                     },
                     fontFamily: {
                         serif: ['Fraunces', 'serif'],
                         sans: ['Inter', 'sans-serif'],
                     },
                     boxShadow: {
-                        'soft': '0 10px 40px rgba(0, 0, 0, 0.05)',
+                        'soft': '0 10px 35px rgba(30, 27, 24, 0.09), 0 2px 6px rgba(30, 27, 24, 0.05)',
                     }
                 }
             }
@@ -117,13 +117,13 @@ if (isset($_POST['login'])) {
 
     <!-- MAIN LOGIN CARD -->
     <main class="flex-grow flex items-center justify-center p-4 my-8">
-        <div class="w-full max-w-md bg-white rounded-[2.5rem] shadow-soft p-8 md:p-10 border border-sand/30">
+        <div class="w-full max-w-md bg-white rounded-[2.5rem] shadow-soft p-8 md:p-10 border border-sand/50">
             
             <!-- HEADER FORM -->
             <div class="text-center mb-8">
                 <span class="text-clay text-[10px] font-bold tracking-widest uppercase mb-2 block">Selamat Datang Kembali</span>
                 <h1 class="font-serif text-3xl font-semibold text-stone-ink">Masuk Akun</h1>
-                <p class="text-xs text-stone-ink/60 mt-2">Nikmati secangkir kehangatan favoritmu di Kopi Singgah.</p>
+                <p class="text-xs text-stone-ink/70 mt-2 font-medium">Nikmati secangkir kehangatan favoritmu di Kopi Singgah.</p>
             </div>
 
             <!-- FORM LOGIN -->
@@ -131,11 +131,11 @@ if (isset($_POST['login'])) {
                 
                 <!-- INPUT USERNAME / EMAIL -->
                 <div>
-                    <label class="block text-xs font-bold text-stone-ink/60 uppercase tracking-widest mb-2">Username / Email</label>
+                    <label class="block text-xs font-bold text-stone-ink/70 uppercase tracking-widest mb-2">Username / Email</label>
                     <div class="relative">
                         <input type="text" name="username" required placeholder="Masukkan username atau email"
-                               class="w-full bg-warm/30 border border-sand/50 rounded-2xl px-4 py-3.5 pl-11 text-sm text-stone-ink focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition">
-                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-stone-ink/40">
+                               class="w-full bg-warm/30 border border-sand rounded-2xl px-4 py-3.5 pl-11 text-sm text-stone-ink focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-stone-ink/50">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                         </div>
                     </div>
@@ -144,11 +144,11 @@ if (isset($_POST['login'])) {
                 <!-- INPUT PASSWORD -->
                 <div>
                     <div class="flex justify-between items-center mb-2">
-                        <label class="block text-xs font-bold text-stone-ink/60 uppercase tracking-widest">Password</label>
+                        <label class="block text-xs font-bold text-stone-ink/70 uppercase tracking-widest">Password</label>
                     </div>
                     <div class="relative">
                         <input type="password" name="password" required placeholder="••••••••"
-                               class="w-full bg-warm/30 border border-sand/50 rounded-2xl px-4 py-3.5 pl-11 text-sm text-stone-ink focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition">
+                               class="w-full bg-warm/30 border border-sand rounded-2xl px-4 py-3.5 pl-11 text-sm text-stone-ink focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-stone-ink/40">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                         </div>

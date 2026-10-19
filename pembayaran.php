@@ -72,16 +72,20 @@ $is_paid = in_array($status_trx, ['selesai', 'lunas', 'success', 'paid']);
             theme: {
                 extend: {
                     colors: {
-                        cream: '#F9F6F0',
-                        warm: '#F3EFE6',
+                        cream: '#F4EFE6',
+                        warm: '#EAE1D3',
                         'stone-ink': '#1E1B18',
-                        clay: '#A96B51',
-                        sand: '#D8CAB3',
-                        sage: '#7C8A6C'
+                        clay: '#9E583C',
+                        sand: '#C4B29A',
+                        sage: '#6B7A58'
                     },
                     fontFamily: {
                         serif: ['Fraunces', 'serif'],
                         sans: ['Inter', 'sans-serif']
+                    },
+                    boxShadow: {
+                        'editorial': '0 4px 20px rgba(30, 27, 24, 0.08), 0 1px 3px rgba(30, 27, 24, 0.05)',
+                        'soft': '0 10px 35px rgba(30, 27, 24, 0.09), 0 2px 6px rgba(30, 27, 24, 0.05)',
                     }
                 }
             }
@@ -185,7 +189,7 @@ $is_paid = in_array($status_trx, ['selesai', 'lunas', 'success', 'paid']);
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
                 <!-- KIRI: RINCIAN PESANAN -->
-                <div class="bg-white rounded-3xl p-8 shadow-sm border border-sand/30">
+                <div class="bg-white rounded-3xl p-8 shadow-editorial border border-sand/50">
                     <h2 class="font-serif text-2xl font-bold mb-6 border-b border-sand/30 pb-4">Rincian Pesanan</h2>
 
                     <div class="space-y-4">
@@ -220,14 +224,14 @@ $is_paid = in_array($status_trx, ['selesai', 'lunas', 'success', 'paid']);
                 </div>
 
                 <!-- KANAN: SCAN & BAYAR -->
-                <div class="bg-white rounded-3xl p-8 shadow-sm border border-sand/30 flex flex-col">
-                    <h2 class="font-serif text-2xl font-bold mb-6 border-b border-sand/30 pb-4">Metode Pembayaran</h2>
+                <div class="bg-white rounded-3xl p-8 shadow-editorial border border-sand/50 flex flex-col">
+                    <h2 class="font-serif text-2xl font-bold mb-6 border-b border-sand/40 pb-4">Metode Pembayaran</h2>
 
                     <div class="flex flex-col items-center flex-grow">
-                        <p class="text-stone-ink/60 text-sm mb-2">Total Tagihan</p>
+                        <p class="text-stone-ink/70 text-sm mb-2 font-medium">Total Tagihan</p>
                         <p class="font-serif text-4xl font-bold text-clay mb-6">Rp <?= number_format($trx['total_harga'], 0, ',', '.') ?></p>
 
-                        <div class="w-full bg-warm/50 rounded-2xl p-5 mb-6 border border-sand/30 text-center">
+                        <div class="w-full bg-warm/50 rounded-2xl p-5 mb-6 border border-sand/50 text-center">
                             <p class="text-xs uppercase tracking-widest font-bold text-stone-ink/50 mb-2">Metode yang dipilih</p>
                             <p class="font-semibold text-lg"><?= htmlspecialchars($metode_pembayaran) ?></p>
                             <?php if (strtolower($metode_pembayaran) === 'qris'): ?>

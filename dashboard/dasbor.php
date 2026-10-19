@@ -106,12 +106,12 @@ if (isset($_POST['tambah']) || isset($_POST['update'])) {
                         'sans': ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        'cream': '#faf8f5',
-                        'warm': '#f5f0e8',
-                        'stone-ink': '#2c2a26',
-                        'sage': '#8a9a7b',
-                        'clay': '#c67b5c',
-                        'sand': '#d4c5b0',
+                        'cream': '#F4EFE6',
+                        'warm': '#EAE1D3',
+                        'stone-ink': '#1E1B18',
+                        'sage': '#6B7A58',
+                        'clay': '#9E583C',
+                        'sand': '#C4B29A',
                     }
                 }
             }
@@ -123,19 +123,19 @@ if (isset($_POST['tambah']) || isset($_POST['update'])) {
         }
 
         .soft-shadow {
-            box-shadow: 0 1px 3px rgba(44, 42, 38, 0.04), 0 8px 24px rgba(44, 42, 38, 0.06);
+            box-shadow: 0 2px 8px rgba(30, 27, 24, 0.06), 0 12px 28px rgba(30, 27, 24, 0.08);
         }
 
         .input-soft {
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px solid rgba(44, 42, 38, 0.08);
+            background: #ffffff;
+            border: 1.5px solid rgba(30, 27, 24, 0.2);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .input-soft:focus {
-            background: rgba(255, 255, 255, 0.9);
-            border-color: rgba(198, 123, 92, 0.4);
-            box-shadow: 0 0 0 4px rgba(198, 123, 92, 0.08);
+            background: #ffffff;
+            border-color: #9E583C;
+            box-shadow: 0 0 0 4px rgba(158, 88, 60, 0.12);
             outline: none;
         }
 

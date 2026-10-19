@@ -84,12 +84,12 @@ if (isset($_POST['aksi']) && $_POST['aksi'] === 'reset') {
             theme: {
                 extend: {
                     colors: {
-                        cream: '#F9F6F0',
-                        warm: '#F3EFE6',
+                        cream: '#F4EFE6',
+                        warm: '#EAE1D3',
                         'stone-ink': '#1E1B18',
-                        clay: '#A96B51',
-                        sand: '#D8CAB3',
-                        sage: '#7C8A6C',
+                        clay: '#9E583C',
+                        sand: '#C4B29A',
+                        sage: '#6B7A58',
                     },
                     fontFamily: {
                         serif: ['Fraunces', 'serif'],
@@ -97,7 +97,7 @@ if (isset($_POST['aksi']) && $_POST['aksi'] === 'reset') {
                         handwriting: ['Caveat', 'cursive'],
                     },
                     boxShadow: {
-                        'editorial': '0 4px 20px rgba(0, 0, 0, 0.03)',
+                        'editorial': '0 4px 20px rgba(30, 27, 24, 0.08), 0 1px 3px rgba(30, 27, 24, 0.05)',
                     }
                 }
             }

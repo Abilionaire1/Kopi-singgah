@@ -33,12 +33,12 @@ if ($kategori_query && mysqli_num_rows($kategori_query) > 0) {
             theme: {
                 extend: {
                     colors: {
-                        cream: '#F9F6F0',
-                        warm: '#F3EFE6',
+                        cream: '#F4EFE6',
+                        warm: '#EAE1D3',
                         'stone-ink': '#1E1B18',
-                        clay: '#A96B51',
-                        sand: '#D8CAB3',
-                        sage: '#7C8A6C',
+                        clay: '#9E583C',
+                        sand: '#C4B29A',
+                        sage: '#6B7A58',
                     },
                     fontFamily: {
                         serif: ['Fraunces', 'serif'],
@@ -46,8 +46,8 @@ if ($kategori_query && mysqli_num_rows($kategori_query) > 0) {
                         handwriting: ['Caveat', 'cursive'],
                     },
                     boxShadow: {
-                        'editorial': '0 4px 20px rgba(0, 0, 0, 0.03)',
-                        'soft': '0 10px 40px rgba(0, 0, 0, 0.05)',
+                        'editorial': '0 4px 20px rgba(30, 27, 24, 0.08), 0 1px 3px rgba(30, 27, 24, 0.05)',
+                        'soft': '0 10px 35px rgba(30, 27, 24, 0.09), 0 2px 6px rgba(30, 27, 24, 0.05)',
                     }
                 }
             }
@@ -113,7 +113,7 @@ if ($kategori_query && mysqli_num_rows($kategori_query) > 0) {
         <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
             <div class="flex overflow-x-auto no-scrollbar gap-4 items-center">
                 <?php foreach($kategori_list as $kat): ?>
-                    <a href="#kat-<?= $kat['id_kategori'] ?>" class="whitespace-nowrap px-5 py-2 rounded-full border border-sand/60 text-xs font-bold uppercase tracking-wider text-stone-ink/70 hover:bg-stone-ink hover:text-white hover:border-stone-ink transition duration-300">
+                    <a href="#kat-<?= $kat['id_kategori'] ?>" class="whitespace-nowrap px-5 py-2 rounded-full border border-sand bg-white/70 text-xs font-bold uppercase tracking-wider text-stone-ink/80 hover:bg-stone-ink hover:text-white hover:border-stone-ink transition duration-300 shadow-sm">
                         <?= htmlspecialchars($kat['nama_kategori']) ?>
                     </a>
                 <?php endforeach; ?>
@@ -149,7 +149,7 @@ if ($kategori_query && mysqli_num_rows($kategori_query) > 0) {
                         <?php while($data = mysqli_fetch_array($produk_query)): ?>
                             
                             <!-- Product Card Dinamis -->
-                            <div class="bg-white rounded-2xl p-3 shadow-editorial group hover:-translate-y-1 transition duration-300 flex flex-col h-full border border-transparent hover:border-sand/40">
+                            <div class="bg-white rounded-2xl p-3 shadow-editorial group hover:-translate-y-1 transition duration-300 flex flex-col h-full border border-sand/50 hover:border-clay/60">
                                 <div class="relative h-48 md:h-56 rounded-xl overflow-hidden mb-4 bg-sand/20 shrink-0">
                                     <div class="absolute top-2 left-2 bg-white/90 text-[9px] font-bold px-2 py-1 rounded-md z-10 uppercase">
                                         <?= htmlspecialchars($nama_kat) ?>
